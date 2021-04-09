@@ -1,0 +1,71 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: auto;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  min-width: 350px;
+  height: auto;
+}
+
+.checkbox {
+  display: none;
+}
+
+.checkbox + label {
+  display: inline-block;
+  position: relative;
+  width: 135px;
+  height: 50px;
+  background: linear-gradient(
+      to right,
+      #fd1a15 0,
+      #fc8b34 45%,
+      #7fd03e 55%,
+      #007177 100%
+    )
+    0 0;
+  background-size: 650px 100%;
+  border-radius: 70px;
+  padding: 7px;
+  cursor: pointer;
+  transition: all 500ms ease;
+  box-shadow: 0 0px 10px rgba(0, 0, 0, 0.2) inset;
+}
+.checkbox + label:before {
+  content: 'Off';
+  width: 46px;
+  height: 46px;
+  position: absolute;
+  left: 2px;
+  top: 2px;
+  border-radius: 100%;
+  background: #fff;
+  text-align: center;
+  line-height: 49px;
+  font-family: 'Cabin', sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  color: #fd1a15;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: left 500ms ease, color 500ms ease, transform 150ms ease;
+}
+.checkbox + label:active:before {
+  transform: scale(0.95);
+}
+
+.checkbox:checked + label {
+  background-position-x: -350px;
+}
+.checkbox:checked + label:before {
+  content: 'On';
+  color: #007177;
+  left: 86px;
+}
