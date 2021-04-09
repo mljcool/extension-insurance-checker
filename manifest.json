@@ -1,24 +1,22 @@
 {
   "manifest_version": 2,
-  "name": "Sample Web Scrapping Insurance Checker",
+  "name": "Insuranc Checker",
   "version": "1.0.0",
-  "description": "This is a simple extensiong for web scrapping",
+  "description": "This extension will check Insurances for clients",
   "author": "Mark Gocela",
   "icons": {
-    "128": "square-logo.png"
+    "128": "./icons/icon128.png",
+    "48": "./icons/icon48.png",
+    "16": "./icons/icon16.png"
   },
   "browser_action": {
+    "default_icon": "./icons/icon128.png",
     "default_popup": "popup.html",
-    "default_icon": "square-logo.png",
-    "default_title": "web scraping"
+    "default_title": "Insurance Checker"
   },
-  "content_security_policy": "script-src 'self' https://ajax.googleapis.com; object-src 'self'",
   "permissions": ["tabs"],
-  "background": [
-    {
-      "script": ["jquery.min.js", "main.js"],
-      "persistent": false
-    }
-  ]
+  "background": {
+    "scripts": ["./scripts/eventPage.js"],
+    "persistent": false
+  }
 }
-  
