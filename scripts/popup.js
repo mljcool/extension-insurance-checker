@@ -12,6 +12,9 @@ $(function() {
             message: 'checking all providers for clients.',
           }),
         });
+        getScopeFromPage();
+        removedFiltersLogo('none');
+        clearStatusNotifications();
       });
     } else {
       chrome.notifications.clear('ON', () => {
@@ -23,6 +26,8 @@ $(function() {
             message: 'stopping all services..',
           }),
         });
+        removedFiltersLogo('invert(0.5)');
+        clearStatusNotifications();
       });
     }
   });

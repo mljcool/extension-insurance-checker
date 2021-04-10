@@ -9,14 +9,27 @@
     "48": "./icons/icon48.png",
     "16": "./icons/icon16.png"
   },
-  "browser_action": {
+  "page_action": {
     "default_icon": "./icons/icon128.png",
     "default_popup": "popup.html",
     "default_title": "Insurance Checker"
   },
-  "permissions": ["storage", "notifications", "contextMenus"],
+  "permissions": [
+    "storage",
+    "tabs",
+    "notifications",
+    "contextMenus",
+    "https://sit-mycrm.nzfsg.co.nz/*"
+  ],
   "background": {
-    "scripts": ["./scripts/eventPage.js"],
+    "scripts": ["./scripts/background.js"],
     "persistent": false
-  }
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://sit-mycrm.nzfsg.co.nz/*"],
+      "js": ["./scripts/content.js", "./scripts/jquery-3.6.0.min.js"],
+      "css": ["./styles/content.css"]
+    }
+  ]
 }
