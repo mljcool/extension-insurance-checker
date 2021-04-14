@@ -14,7 +14,9 @@ $(function() {
         });
         getScopeFromPage();
         removedFiltersLogo('none');
+        changeCssLogoBorder('2px #576475 solid');
         clearStatusNotifications();
+        setExtensionStatus('ON');
       });
     } else {
       chrome.notifications.clear('ON', () => {
@@ -27,8 +29,27 @@ $(function() {
           }),
         });
         removedFiltersLogo('invert(0.5)');
+        changeCssLogoBorder('2px #cfcfcf solid');
         clearStatusNotifications();
+        setExtensionStatus('OFF');
       });
     }
   });
+  setChromeIdentity();
+  getChromeIdentity();
+  getExtensionStatus();
+  getClientsIdentity();
+
+  chrome.webRequest.onCompleted.addListener(
+    function(details) {
+      // Process the XHR response.
+      console.log('>>>>>>>>> webRequest', details);
+    },
+    {
+      urls: [
+        'https://sit-mycrm.nzfsg.co.nz/*',
+        'https://sit-mycrm.loanmarket.com.au/*',
+      ],
+    },
+  );
 });
