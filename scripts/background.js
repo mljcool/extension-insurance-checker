@@ -13,15 +13,14 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
   }
 });
 
-chrome.webRequest.onCompleted.addListener(
-  function(details) {
-    // Process the XHR response.
-    console.log('>>>>>>>>> webRequest', details);
-  },
-  {
-    urls: [
-      'https://sit-mycrm.nzfsg.co.nz/*',
-      'https://sit-mycrm.loanmarket.com.au/*',
-    ],
-  },
-);
+chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
+  // read changeInfo data and do something with it
+  // like send the new url to contentscripts.js
+  if (changeInfo.url) {
+    console.log('>>>>>>>>>>>>>>>>>>>>>>>> change detected');
+    chrome.tabs.sendMessage(tabId, {
+      message: 'urlChange',
+      url: changeInfo.url,
+    });
+  }
+});

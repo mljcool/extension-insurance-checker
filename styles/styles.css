@@ -6,6 +6,7 @@ html,
 body {
   height: auto;
   margin: 0 auto;
+  font-family: Arial, sans-serif;
 }
 .main-wrapper {
   display: flex;
@@ -13,6 +14,7 @@ body {
   width: 500px;
 }
 .main-menu-container {
+  transition: opacity 0.5s ease-in;
   display: flex;
   flex-wrap: nowrap;
 }
@@ -22,6 +24,26 @@ body {
   padding: 0.5em;
   align-items: center;
 }
+.user-settings {
+  margin-left: auto;
+  border: white 1px solid;
+  padding: 2px;
+  border-radius: 50%;
+  padding: 2px;
+  height: 22px;
+  width: 22px;
+  cursor: pointer;
+}
+.user-settings:hover {
+  background: #c7c7c7;
+}
+.noshow {
+  transition: opacity 1s ease-out;
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+}
+
 .title-app {
   margin-left: 5px;
   font-weight: 500;
@@ -33,7 +55,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-width: 200px;
+  min-width: 155px;
   height: auto;
   padding: 1em;
   border-right: 1px solid #cbd4d7;
@@ -65,7 +87,7 @@ body {
   cursor: pointer;
 }
 .ins-items:hover {
-  background: #cbd4d7;
+  background: #f3f2f2;
 }
 .ins-name {
   margin-left: 10px;
@@ -135,23 +157,23 @@ body {
 }
 
 .logo-status {
-  height: 150px;
+  height: 120px;
+  width: 120px;
   display: flex;
   flex-direction: column;
   align-items: center;
   border: 2px #cfcfcf solid;
   border-radius: 100%;
-  width: 150px;
   justify-content: center;
 }
 .logo-status label {
-  font-size: 12px;
+  font-size: 10px;
   font-weight: 500;
   color: #333;
 }
 .logo-status img {
   filter: invert(0.5);
-  width: 118px;
+  width: 90px;
 }
 .switch-status {
   margin-top: 1em;
