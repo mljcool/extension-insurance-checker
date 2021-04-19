@@ -12,7 +12,7 @@ app.config([
 
 app.controller('pagerCtrl', function($scope) {
   $scope.message = 'COOL ANGULAR WORKING';
-
+  $scope.isHideProfile = false;
   $scope.insuranceList = [
     {
       clientId: 1,
@@ -53,4 +53,8 @@ app.controller('pagerCtrl', function($scope) {
       ],
     },
   ];
+
+  $scope.toggleProfile = function() {
+    $scope.isHideProfile = !$scope.isHideProfile;
+  };
 });

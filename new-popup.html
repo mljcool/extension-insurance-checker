@@ -37,33 +37,50 @@
           </div>
         </div>
       </div>
-      <div class="ic-profile-section ic-card-unique">
-        <div class="ic-main-details">
-          <div class="profile-avatar">
-            <img
-              src="./assets/avatar-new.png"
-              alt="avatar-checker"
-              width="45px"
-              height="45px"
-            />
+      <div class="main-profile-container">
+        <div
+          class="ic-profile-section ic-card-unique"
+          ng-class="{'hide-profile': isHideProfile}"
+        >
+          <div class="ic-main-details">
+            <div class="profile-avatar">
+              <img
+                src="./assets/avatar-new.png"
+                alt="avatar-checker"
+                class="avatar-checker"
+              />
+            </div>
+            <div class="ic-profile-details">
+              <span>Jhon Doe</span>
+              <span class="small-details">ASSISTANT</span>
+            </div>
           </div>
-          <div class="ic-profile-details">
-            <span>Jhon Doe</span>
-            <span class="small-details">ASSISTANT</span>
+          <div class="ic-profile-sync">
+            <div class="sync-info">
+              <a class="sync-btn" title="Sync Now"
+                ><img src="./assets/sync.png" class="sync-img"
+              /></a>
+            </div>
+            <div class="sync-info">
+              <span class="small-details">Last sync</span>
+              <span class="small-details date-details">1 Day ago.</span>
+            </div>
           </div>
         </div>
-        <div class="ic-profile-sync">
-          <div class="sync-info">
-            <a class="sync-btn" title="Sync Now"
-              ><img src="./assets/sync.png" class="sync-img"
-            /></a>
-          </div>
-          <div class="sync-info">
-            <span class="small-details">Last sync</span>
-            <span class="small-details date-details">1 Day ago.</span>
+        <div class="ic-profile-dragger" ng-click="toggleProfile();">
+          {{ !isHideProfile ? 'hide' : 'show' }} profile
+          <div class="caret">
+            <img
+              class="caret-icon"
+              ng-class="{'rotate-caret': isHideProfile}"
+              src="./assets/caret-up-solid.svg"
+              width="15px"
+              height="15px"
+            />
           </div>
         </div>
       </div>
+
       <!-- START CLIENT PROFILE -->
       <div
         class="ic-clients-list"
@@ -91,10 +108,10 @@
             </div>
             <div class="client-menus">
               <img
-                src="./assets/android-menu.png"
+                src="./assets/sync.png"
                 alt="client-menu"
-                width="5px"
-                height="15px"
+                width="18px"
+                height="18px"
                 class="c-menu"
               />
             </div>
