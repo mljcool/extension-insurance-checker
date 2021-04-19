@@ -55,7 +55,7 @@ body {
   justify-content: flex-end;
 }
 .ic-profile-dragger {
-  z-index: 99;
+  z-index: 9;
   cursor: pointer;
   position: absolute;
   background: white;
@@ -247,7 +247,6 @@ body {
   cursor: pointer;
 }
 .ic-footer {
-  border-top: 2px solid #d9d9d9;
   background: #ffff;
   display: block;
   text-align: end;
@@ -345,9 +344,10 @@ body {
   background-color: #f9f9f9;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1;
+  z-index: 10;
   right: 0em;
   border-radius: 5px;
+  border-top: 1px solid #e4e2e2;
 }
 
 .dropdown-content a {
@@ -364,4 +364,27 @@ body {
 
 .dropdown:hover .dropdown-content {
   display: block;
+}
+.no-clients {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+.no-clients-msg span {
+  font: bold 15px arial, sans-serif;
+  background-color: #9c9c9c;
+  color: transparent;
+  text-shadow: 2px 2px 3px rgba(255, 255, 255, 0.5);
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+}
+.no-clients-crm-logo {
+  display: block;
+  text-align: center;
+}
+.no-clients-crm-logo img {
+  filter: invert(0.5);
 }

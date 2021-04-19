@@ -79,7 +79,7 @@ const setExtensionStatus = (status) => {
 };
 
 const getClientsIdentity = () => {
-  chrome.storage.sync.get('clients', function(items) {
+  chrome.storage.local.get('clientsInsaApp', function(items) {
     console.log('clientsclientsclients', items);
   });
 };

@@ -35,7 +35,6 @@ $(function() {
       });
     }
   });
-  setChromeIdentity();
   getChromeIdentity();
   getExtensionStatus();
   getClientsIdentity();

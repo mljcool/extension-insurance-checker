@@ -8,9 +8,9 @@
     <script src="scripts/angular.min.js"></script>
     <script src="scripts/app.js"></script>
     <script src="scripts/jquery-3.6.0.min.js"></script>
-    <!-- <script src="scripts/functions.js"></script>
+    <script src="scripts/functions.js"></script>
     <script src="scripts/popup.js"></script>
-    <script src="scripts/eventsToggle.js"></script> -->
+    <script src="scripts/eventsToggle.js"></script>
   </head>
   <body ng-controller="pagerCtrl">
     <div class="main-wrapper">
@@ -80,14 +80,21 @@
           </div>
         </div>
       </div>
-
       <!-- START CLIENT PROFILE -->
-      <div
-        class="ic-clients-list"
-        ng-class="{'is-empty': !!insuranceList.length}"
-      >
+      <div class="ic-clients-list" ng-class="{'is-empty': !hasData}">
+        <div class="no-clients" ng-if="!hasData">
+          <div class="no-clients-wrapper">
+            <div class="no-clients-crm-logo">
+              <img src="./icons/mycrm-logo.png" height="50px" width="165px" />
+            </div>
+            <div class="no-clients-msg">
+              <span>Please make sure to select a client.</span>
+            </div>
+          </div>
+        </div>
         <div
           class="client-card"
+          ng-if="hasData"
           ng-repeat="client in insuranceList track by $index"
         >
           <div class="c-header">
@@ -102,8 +109,8 @@
                 />
               </div>
               <div class="c-names">
-                <span>{{client.fname}}</span>
-                <span>{{client.lname}}</span>
+                <span>{{client.clientDetails.ClientFirstName}}</span>
+                <span>{{client.clientDetails.ClientLastName}}</span>
               </div>
             </div>
             <div class="client-menus">
@@ -119,20 +126,20 @@
           <div class="c-content">
             <div
               class="inurance-list"
-              ng-repeat="insurers in client.covers track by $index"
+              ng-repeat="insurer in client.insurers track by $index"
             >
               <div class="ins-details">
                 <div class="ins-logo-details">
                   <img
-                    ng-src="./assets/insurers/{{insurers.id}}.png"
+                    ng-src="./assets/insurers/{{insurer.ProviderID}}.png"
                     alt="insurers "
                     class="c-ins-logo"
                   />
                 </div>
                 <div class="ins-name-details">
-                  <span class="provider-name">{{insurers.insurerName}}</span>
+                  <span class="provider-name">{{insurer.ProviderName}}</span>
                   <span class="cover-name">Life cover</span>
-                  <span class="cover-price">$150000</span>
+                  <span class="cover-price">${{insurer.TotalPremiums}}</span>
                 </div>
               </div>
               <div class="ins-button-details">
