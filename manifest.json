@@ -11,7 +11,7 @@
   },
   "page_action": {
     "default_icon": "./icons/icon128.png",
-    "default_popup": "popup.html",
+    "default_popup": "new-popup.html",
     "default_title": "Insurance Checker"
   },
   "permissions": [
@@ -34,5 +34,6 @@
       "js": ["./scripts/content.js", "./scripts/jquery-3.6.0.min.js"],
       "css": ["./styles/content.css"]
     }
-  ]
+  ],
+  "web_accessible_resources": ["assets/insurers/*.png"]
 }

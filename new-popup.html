@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html ng-app="AngularChromeEx" ng-csp>
+  <head>
+    <title>Insurance Checker</title>
+    <link rel="stylesheet" type="text/css" href="styles/ic-style.css" />
+    <link rel="stylesheet" type="text/css" href="styles/ic-checkbox.css" />
+    <link rel="stylesheet" type="text/css" href="styles/scroll.css" />
+    <script src="scripts/angular.min.js"></script>
+    <script src="scripts/app.js"></script>
+    <script src="scripts/jquery-3.6.0.min.js"></script>
+    <!-- <script src="scripts/functions.js"></script>
+    <script src="scripts/popup.js"></script>
+    <script src="scripts/eventsToggle.js"></script> -->
+  </head>
+  <body ng-controller="pagerCtrl">
+    <div class="main-wrapper">
+      <div class="ic-options-menu ic-card">
+        <div class="logo-icon">
+          <img
+            src="./icons/mycrm-logo.png"
+            alt="insuranc-checker"
+            width="65px"
+            height="20px"
+          />
+          <span class="ic-app-title">Insurance Checker</span>
+        </div>
+        <div class="menu-icon" title="menu">
+          <div class="dropdown">
+            <button class="dropbtn">
+              <img src="./assets/menu-solid.png" class="menus-bar" />
+            </button>
+            <div class="dropdown-content">
+              <a href="#">Update Credentials</a>
+              <a href="#">Guide</a>
+              <a href="#">Settings</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ic-profile-section ic-card-unique">
+        <div class="ic-main-details">
+          <div class="profile-avatar">
+            <img
+              src="./assets/avatar-new.png"
+              alt="avatar-checker"
+              width="45px"
+              height="45px"
+            />
+          </div>
+          <div class="ic-profile-details">
+            <span>Jhon Doe</span>
+            <span class="small-details">ASSISTANT</span>
+          </div>
+        </div>
+        <div class="ic-profile-sync">
+          <div class="sync-info">
+            <a class="sync-btn" title="Sync Now"
+              ><img src="./assets/sync.png" class="sync-img"
+            /></a>
+          </div>
+          <div class="sync-info">
+            <span class="small-details">Last sync</span>
+            <span class="small-details date-details">1 Day ago.</span>
+          </div>
+        </div>
+      </div>
+      <!-- START CLIENT PROFILE -->
+      <div
+        class="ic-clients-list"
+        ng-class="{'is-empty': !!insuranceList.length}"
+      >
+        <div
+          class="client-card"
+          ng-repeat="client in insuranceList track by $index"
+        >
+          <div class="c-header">
+            <div class="c-information">
+              <div class="client-avatar">
+                <img
+                  src="./assets/avatar-new.png"
+                  alt="avatar-checker"
+                  width="25px"
+                  height="25px"
+                  class="c-reavatar"
+                />
+              </div>
+              <div class="c-names">
+                <span>{{client.fname}}</span>
+                <span>{{client.lname}}</span>
+              </div>
+            </div>
+            <div class="client-menus">
+              <img
+                src="./assets/android-menu.png"
+                alt="client-menu"
+                width="5px"
+                height="15px"
+                class="c-menu"
+              />
+            </div>
+          </div>
+          <div class="c-content">
+            <div
+              class="inurance-list"
+              ng-repeat="insurers in client.covers track by $index"
+            >
+              <div class="ins-details">
+                <div class="ins-logo-details">
+                  <img
+                    ng-src="./assets/insurers/{{insurers.id}}.png"
+                    alt="insurers "
+                    class="c-ins-logo"
+                  />
+                </div>
+                <div class="ins-name-details">
+                  <span class="provider-name">{{insurers.insurerName}}</span>
+                  <span class="cover-name">Life cover</span>
+                  <span class="cover-price">$150000</span>
+                </div>
+              </div>
+              <div class="ins-button-details">
+                <button class="view-details">View</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- END CLIENT PROFILE -->
+
+      <div class="ic-footer">
+        <input class="checkbox" id="codepen" type="checkbox" />
+        <label for="codepen"></label>
+      </div>
+    </div>
+  </body>
+</html>
