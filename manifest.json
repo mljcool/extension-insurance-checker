@@ -21,18 +21,21 @@
     "notifications",
     "contextMenus",
     "identity",
-    "webRequest",
     "https://sit-mycrm.nzfsg.co.nz/*",
     "https://sit-mycrm.loanmarket.com.au/*"
   ],
   "background": {
     "scripts": ["./scripts/background.js"],
-    "persistent": true
+    "persistent": false
   },
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["./scripts/content.js", "./scripts/jquery-3.6.0.min.js"],
+      "js": [
+        "./scripts/jquery-3.6.0.min.js",
+        "./scripts/myCrm/interceptor.js",
+        "./scripts/myCrm/injector.js"
+      ],
       "run_at": "document_start",
       "css": ["./styles/content.css"]
     }
