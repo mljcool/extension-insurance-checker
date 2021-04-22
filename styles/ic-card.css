@@ -26,6 +26,9 @@
   margin-bottom: 15px;
   perspective: 2000px;
   transition: margin 0.4s 0.1s;
+  box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 20%),
+    0 1px 5px 0 rgb(0 0 0 / 12%);
+  border-radius: 14px;
 }
 .card.active {
   transition: margin 0.4s;
@@ -391,31 +394,31 @@
   border-bottom-left-radius: 11px;
   transition: width 0.3s;
 }
-.card__face:hover .card__face__colored-side {
-  width: 80px;
-}
-.card__face__price {
-  margin-top: -3px;
-  font-weight: normal;
-  font-size: 22px;
-  color: #555a5f;
+.card__face__insurer-logo {
   transition: color 0.3s;
+  top: 82px;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
-.card__face:hover .card__face__price {
-  color: #fff;
+.card__face__insurer-name {
+  font-size: 12px;
+  font-weight: normal;
+  color: #555a5f;
 }
 .card__face__divider {
   position: absolute;
   left: 80px;
   top: 10px;
   width: 1px;
-  height: calc(100% - 20px);
+  height: calc(100% - 70px);
   background: #ececec;
 }
 .card__face__path {
   position: absolute;
-  left: 105px;
-  top: 36px;
+  left: 89px;
+  top: 96px;
   width: 2px;
   height: 23px;
 }
@@ -438,8 +441,8 @@
 }
 .card__face__from-to {
   position: absolute;
-  left: 120px;
-  top: 20px;
+  left: 108px;
+  top: 80px;
   width: 300px;
   color: #555a5f;
   font-size: 13px;
@@ -453,34 +456,39 @@
   height: 1px;
   background: #ececec;
 }
+
+.card__face__main-info {
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+  background: #f5f2f8;
+  border-radius: 5px;
+}
+
+.card__face__client-info {
+  display: flex;
+  justify-content: space-between;
+}
+
 .card__face__from-to p:first-child {
   margin-bottom: 15px;
 }
 .card__face__deliv-date {
-  position: absolute;
   left: 20px;
-  top: 100px;
   color: #9a9e9e;
   text-transform: uppercase;
-  font-size: 12px;
+  font-size: 14px;
+  font-weight: 500;
   transition: color 0.3s;
 }
 .card__face__deliv-date p {
   color: #606568;
   transition: color 0.3s;
 }
-.card__face:hover .card__face__deliv-date {
-  color: rgba(255, 255, 255, 0.8);
-}
-.card__face:hover .card__face__deliv-date p {
-  color: #fff;
-}
 .card__face__stats {
-  position: absolute;
-  top: 100px;
-  color: #b5b5b5;
+  color: #999898;
   text-transform: uppercase;
-  font-size: 12px;
+  font-size: 11px;
 }
 .card__face__stats p {
   font-size: 10px;

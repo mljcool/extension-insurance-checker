@@ -77,7 +77,7 @@
           </div>
         </div>
         <div class="ic-profile-dragger" ng-click="toggleProfile();">
-          {{ !isHideProfile ? 'hide' : 'show' }} Clients profile
+          {{ !isHideProfile ? 'hide' : 'show' }} my profile
           <div class="caret">
             <img
               class="caret-icon"
@@ -208,30 +208,40 @@
               <div class="card__part__side m--back">
                 <div class="card__part__inner card__face">
                   <div class="card__face__colored-side"></div>
-                  <h3 class="card__face__price">${{card.price}}</h3>
-                  <div class="card__face__divider"></div>
+                  <div class="card__face__main-info">
+                    <div class="card__face__deliv-date">
+                      <p>Mark XxxXxxx</p>
+                    </div>
+                    <div class="card__face__client-info">
+                      <div class="card__face__stats card__face__stats--req">
+                        Gender
+                        <p>{{card.requests}}</p>
+                      </div>
+                      <div class="card__face__stats card__face__stats--pledge">
+                        DOB
+                        <p>${{card.pledge}}</p>
+                      </div>
+                      <div class="card__face__stats card__face__stats--weight">
+                        Email
+                        <p class="card__face__stats__weight">
+                          <span>Light</span>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="card__face__insurer-logo">
+                    <img
+                      src="./assets/insurers/1.png"
+                      width="52px"
+                      height="29px"
+                    />
+                    <p class="card__face__insurer-name">AIA</p>
+                  </div>
                   <div class="card__face__path"></div>
                   <div class="card__face__from-to">
-                    <p>{{card.fromStreet}}, {{card.fromCity}}</p>
-                    <p>{{card.toStreet}}, {{card.toCity}}</p>
-                  </div>
-                  <div class="card__face__deliv-date">
-                    {{card.delivDateNoun}}
-                    <p>{{card.delivTime}}</p>
-                  </div>
-                  <div class="card__face__stats card__face__stats--req">
-                    Gender
-                    <p>{{card.requests}}</p>
-                  </div>
-                  <div class="card__face__stats card__face__stats--pledge">
-                    DOB
-                    <p>${{card.pledge}}</p>
-                  </div>
-                  <div class="card__face__stats card__face__stats--weight">
-                    Weight
-                    <p class="card__face__stats__weight">
-                      <span>Light</span>
-                    </p>
+                    <p>Life Cover - 150px</p>
+                    <p>Trauma Cover - 150px</p>
                   </div>
                 </div>
               </div>
