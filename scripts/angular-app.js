@@ -95,6 +95,18 @@ app.controller('pagerCtrl', function($scope) {
     }, 500);
   };
 
+  $scope.connectToProvider = (type, data, idx) => {
+    $scope.insuranceLoginList[idx].isSyncing = true;
+    console.log(data);
+    setTimeout(() => {
+      $scope.insuranceLoginList[idx].isSyncing = false;
+      $scope.insuranceLoginList[idx].isConnected = true;
+      $scope.insuranceLoginList[idx].username = '';
+      $scope.insuranceLoginList[idx].password = '';
+      $scope.$apply();
+    }, 3000);
+  };
+
   // onLoadSyncData({ $scope });
 
   $scope.gettingStarted = () => {
@@ -104,7 +116,7 @@ app.controller('pagerCtrl', function($scope) {
   $scope.toggleProfile = function() {
     $scope.isHideProfile = !$scope.isHideProfile;
   };
-  $scope.getClientData();
+  // $scope.getClientData();
 
   $scope.insuranceLoginList = sampleInsuranceLis;
   $scope.listOFClientInsurances = listOFClientInsurances;

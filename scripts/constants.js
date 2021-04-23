@@ -13,7 +13,7 @@ const sampleInsuranceLis = [
     username: '',
     password: '',
     isConnected: true,
-    isSyncing: true,
+    isSyncing: false,
   },
   {
     id: 4,

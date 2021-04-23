@@ -221,7 +221,8 @@
                   ng-if="insuranceConnect.isSyncing"
                 >
                   <span class="loading-status login_status_sync"
-                    >connecting....</span
+                    >checking to connect {{insuranceConnect.providerName}}
+                    account....</span
                   >
                   <div class="circleloader"></div>
                 </div>
@@ -231,18 +232,36 @@
               <div class="login_fields">
                 <div class="login_fields_group">
                   <label>Username/email</label>
-                  <input type="text" placeholder="type here.." />
+                  <input
+                    type="text"
+                    ng-model="insuranceConnect.username"
+                    name="username"
+                    placeholder="type here.."
+                  />
                 </div>
                 <div class="login_fields_group">
                   <label>Password</label>
-                  <input type="password" placeholder="type here.." />
+                  <input
+                    type="password"
+                    ng-model="insuranceConnect.password"
+                    name="password"
+                    placeholder="type here.."
+                  />
                 </div>
                 <div class="login_fields_group buttons">
-                  <button ng-if="!insuranceConnect.isConnected">
+                  <button
+                    ng-if="!insuranceConnect.isConnected"
+                    ng-click="connectToProvider('first', insuranceConnect, $index)"
+                    ;
+                  >
                     {{ insuranceConnect.isSyncing ? 'Please wait....' :
                     'Connect'}}
                   </button>
-                  <button ng-if="insuranceConnect.isConnected">
+                  <button
+                    ng-if="insuranceConnect.isConnected"
+                    ng-click="connectToProvider('update', insuranceConnect, $index)"
+                    ;
+                  >
                     {{ insuranceConnect.isSyncing ? 'Please wait....' :
                     'Update'}}
                   </button>
