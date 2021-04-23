@@ -26,3 +26,18 @@ const triggerResyncOn = () => {
     });
   });
 };
+
+const onLoadSyncData = ({ $scope }) => {
+  chrome.storage.local.get('sampleCool', function(items) {
+    $scope.message = items;
+    $scope.$apply();
+  });
+  chrome.runtime.onMessage.addListener((message) => {
+    if (message.senderFrom === 'myCRM') {
+      chrome.storage.local.get('sampleCool', function(items) {
+        $scope.message = items;
+        $scope.$apply();
+      });
+    }
+  });
+};

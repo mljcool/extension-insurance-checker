@@ -5,6 +5,7 @@ const sampleInsuranceLis = [
     username: '',
     password: '',
     isConnected: false,
+    isSyncing: false,
   },
   {
     id: 3,
@@ -12,6 +13,7 @@ const sampleInsuranceLis = [
     username: '',
     password: '',
     isConnected: true,
+    isSyncing: true,
   },
   {
     id: 4,
@@ -19,6 +21,7 @@ const sampleInsuranceLis = [
     username: '',
     password: '',
     isConnected: false,
+    isSyncing: false,
   },
   {
     id: 5,
@@ -26,6 +29,7 @@ const sampleInsuranceLis = [
     username: '',
     password: '',
     isConnected: false,
+    isSyncing: false,
   },
   {
     id: 6,
@@ -33,6 +37,7 @@ const sampleInsuranceLis = [
     username: '',
     password: '',
     isConnected: false,
+    isSyncing: false,
   },
   {
     id: 8,
@@ -40,6 +45,7 @@ const sampleInsuranceLis = [
     username: '',
     password: '',
     isConnected: false,
+    isSyncing: false,
   },
   {
     id: 9,
@@ -47,6 +53,7 @@ const sampleInsuranceLis = [
     username: '',
     password: '',
     isConnected: false,
+    isSyncing: false,
   },
   {
     id: 10,
@@ -54,6 +61,7 @@ const sampleInsuranceLis = [
     username: '',
     password: '',
     isConnected: false,
+    isSyncing: false,
   },
   {
     id: 11,
@@ -61,6 +69,7 @@ const sampleInsuranceLis = [
     username: '',
     password: '',
     isConnected: false,
+    isSyncing: false,
   },
 ];
 

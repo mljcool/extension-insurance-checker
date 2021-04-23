@@ -16,22 +16,23 @@ app.controller('pagerCtrl', function($scope) {
   $scope.doneSetup = false;
   $scope.isGettingStarted = false;
   $scope.hasData = true;
-  $scope.isSyncingData = false;
   $scope.insuranceList = [];
+
+  const toggleSyncing = (parentIdx, childIdx) => {
+    $scope.listOFClientInsurances[parentIdx].insurances[
+      childIdx
+    ].isSync = !$scope.listOFClientInsurances[parentIdx].insurances[childIdx]
+      .isSync;
+  };
 
   $scope.openComparison = (
     { clientInsurance, insurance },
     parentIdx,
     childIdx,
   ) => {
-    console.log(parentIdx, childIdx);
-    $scope.isSyncingData = true;
-    $scope.listOFClientInsurances[parentIdx].insurances[childIdx].isSync = true;
+    toggleSyncing(parentIdx, childIdx);
     setTimeout(() => {
-      $scope.isSyncingData = false;
-      $scope.listOFClientInsurances[parentIdx].insurances[
-        childIdx
-      ].isSync = false;
+      toggleSyncing(parentIdx, childIdx);
       $scope.$apply();
       // viewComaparisonWindow(data);
     }, 5000);
@@ -94,6 +95,8 @@ app.controller('pagerCtrl', function($scope) {
     }, 500);
   };
 
+  // onLoadSyncData({ $scope });
+
   $scope.gettingStarted = () => {
     $scope.isGettingStarted = !$scope.isGettingStarted;
   };
@@ -102,21 +105,6 @@ app.controller('pagerCtrl', function($scope) {
     $scope.isHideProfile = !$scope.isHideProfile;
   };
   $scope.getClientData();
-
-  // listner from myCrm
-
-  // chrome.storage.local.get('sampleCool', function(items) {
-  //   $scope.message = items;
-  //   $scope.$apply();
-  // });
-  // chrome.runtime.onMessage.addListener((message) => {
-  //   if (message.senderFrom === 'myCRM') {
-  //     chrome.storage.local.get('sampleCool', function(items) {
-  //       $scope.message = items;
-  //       $scope.$apply();
-  //     });
-  //   }
-  // });
 
   $scope.insuranceLoginList = sampleInsuranceLis;
   $scope.listOFClientInsurances = listOFClientInsurances;

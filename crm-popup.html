@@ -17,9 +17,9 @@
     <script src="scripts/constants.js"></script>
     <script src="scripts/service-runtime.js"></script>
     <script src="scripts/angular-app.js"></script>
-
+    <!-- 
     <script src="scripts/functions.js"></script>
-    <script src="scripts/popup.js"></script>
+    <script src="scripts/popup.js"></script> -->
   </head>
   <body ng-controller="pagerCtrl">
     <div class="main-wrapper">
@@ -179,6 +179,7 @@
         </div>
       </div>
       <!-- END CLIENT PROFILE -->
+
       <!-- Start Login provider -->
       <div class="login_list" ng-if="isGettingStarted">
         <div class="login_form_wrapper">
@@ -205,7 +206,7 @@
                 >
                 <div
                   class="login_connected_icon"
-                  ng-if="insuranceConnect.isConnected"
+                  ng-if="insuranceConnect.isConnected && !insuranceConnect.isSyncing"
                 >
                   <img
                     width="48px"
@@ -214,6 +215,15 @@
                     src="./assets/is-connected.svg"
                   />
                   <span class="login_status_label">Connected</span>
+                </div>
+                <div
+                  class="switch_container"
+                  ng-if="insuranceConnect.isSyncing"
+                >
+                  <span class="loading-status login_status_sync"
+                    >connecting....</span
+                  >
+                  <div class="circleloader"></div>
                 </div>
               </div>
             </div>
@@ -228,8 +238,14 @@
                   <input type="password" placeholder="type here.." />
                 </div>
                 <div class="login_fields_group buttons">
-                  <button ng-if="!insuranceConnect.isConnected">connect</button>
-                  <button ng-if="insuranceConnect.isConnected">Update</button>
+                  <button ng-if="!insuranceConnect.isConnected">
+                    {{ insuranceConnect.isSyncing ? 'Please wait....' :
+                    'Connect'}}
+                  </button>
+                  <button ng-if="insuranceConnect.isConnected">
+                    {{ insuranceConnect.isSyncing ? 'Please wait....' :
+                    'Update'}}
+                  </button>
                 </div>
               </div>
             </div>
