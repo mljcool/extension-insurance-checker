@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="AngularChromeEx" ng-csp>
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -11,8 +11,10 @@
     <title>Insurance Details</title>
 
     <link rel="stylesheet" type="text/css" href="styles/campare-chart.css" />
+    <script src="scripts/angular.min.js"></script>
+    <script src="scripts/angular-view-details.js"></script>
   </head>
-  <body>
+  <body ng-controller="viewCampareDetailsCtrl">
     <div class="main-wrapper">
       <div class="orgchart">
         <ul class="prime-list">
