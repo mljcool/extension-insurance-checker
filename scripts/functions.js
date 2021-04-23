@@ -17,14 +17,6 @@ const clearStatusNotifications = () => {
     clearTimeout(mySetTimeout);
   }, 3000);
 };
-
-const removedFiltersLogo = (cssProp) => {
-  $('.mycrm-logo').css('filter', cssProp);
-};
-const changeCssLogoBorder = (cssProp) => {
-  $('.logo-status').css('border', cssProp);
-};
-
 const getScopeFromPage = () => {
   chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
     console.log('getScopeFromPage', tabs[0].url);

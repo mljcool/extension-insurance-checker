@@ -13,8 +13,6 @@ $(function() {
           }),
         });
         getScopeFromPage();
-        removedFiltersLogo('none');
-        changeCssLogoBorder('2px #576475 solid');
         clearStatusNotifications();
         setExtensionStatus('ON');
       });
@@ -28,8 +26,6 @@ $(function() {
             message: 'stopping all services..',
           }),
         });
-        removedFiltersLogo('invert(0.5)');
-        changeCssLogoBorder('2px #cfcfcf solid');
         clearStatusNotifications();
         setExtensionStatus('OFF');
       });
