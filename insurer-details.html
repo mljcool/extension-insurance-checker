@@ -9,29 +9,88 @@
       content="default-src 'self' gap:; script-src 'self' data: https://ssl.gstatic.com 'unsafe-eval'; object-src *; style-src 'self' data: 'unsafe-inline'; img-src 'self' data:; media-src 'self' data:; font-src 'self' data:; connect-src *"
     />
     <title>Insurance Details</title>
+
+    <link rel="stylesheet" type="text/css" href="styles/campare-chart.css" />
   </head>
   <body>
     <div class="main-wrapper">
-      <h1>COOOL</h1>
-      <img src="./assets/insurers/1.png" />
+      <div class="orgchart">
+        <ul class="prime-list">
+          <li>
+            <div class="node">
+              <div class="employee-card">
+                <div class="department-info">
+                  <h4 class="name">Cleint Info</h4>
+                </div>
+                <div class="info-block">
+                  <h3 class="job-title">CEO</h3>
+                  <div class="personal-info">
+                    <img
+                      class="profile-image"
+                      src="/static/media/user_image.7e779767.svg"
+                    />
+                    <div class="info-wrap">
+                      <h5 class="name">Peter Aramniani</h5>
+                      <h6 class="email">Sydney Head Office</h6>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <ul class="sub-list">
+              <li>
+                <ul class="sub-list">
+                  <li>
+                    <div class="node no-child">
+                      <div class="employee-card">
+                        <div class="department-info">
+                          <h4 class="name">MyCRM Info</h4>
+                        </div>
+                        <div class="info-block">
+                          <h3 class="job-title">Asteron Life</h3>
+                          <div class="personal-info">
+                            <img
+                              class="profile-image"
+                              src="/static/media/user_image.7e779767.svg"
+                            />
+                            <div class="info-wrap">
+                              <h5 class="name">Peter Aramniani</h5>
+                              <h6 class="email">Sydney Head Office</h6>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="node no-child">
+                      <div class="employee-card">
+                        <div class="department-info">
+                          <h4 class="name">Third Party info</h4>
+                        </div>
+                        <div class="info-block">
+                          <h3 class="job-title">Asteron Life</h3>
+                          <div class="personal-info">
+                            <img
+                              class="profile-image"
+                              src="/assets/insurers/1.png"
+                            />
+                            <div class="info-wrap">
+                              <h5 class="name">Peter Aramniani</h5>
+                              <h6 class="email">Sydney Head Office</h6>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
     </div>
   </body>
-  <script>
-    function findGetParameter(parameterName) {
-      var result = null,
-        tmp = [];
-      location.search
-        .substr(1)
-        .split('&')
-        .forEach(function(item) {
-          tmp = item.split('=');
-          if (tmp[0] === parameterName) result = decodeURIComponent(tmp[1]);
-        });
-      return result;
-    }
-    window.document.onload = function(e) {
-      const params = findGetParameter('sample');
-      console.log('document', params);
-    };
-  </script>
 </html>
