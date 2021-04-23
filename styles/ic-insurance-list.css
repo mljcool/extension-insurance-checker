@@ -56,11 +56,13 @@
   padding-bottom: 6px;
 }
 .insurance_status {
-  background: #f5f1f8;
+  background: #b9b0c0;
   border-radius: 5px;
+  padding: 2px 3px;
   font-size: 11px;
   font-weight: 600;
   text-transform: uppercase;
+  text-align: center;
 }
 .insurance-name {
   font-size: 14px;
@@ -78,6 +80,10 @@
   border-bottom: 1px solid #9a86a8; */
   margin-top: 6px;
   border: 1px solid #efeaf3;
+  box-shadow: 0px 3px 6px rgb(0 0 0 / 16%), 0px 3px 6px rgb(0 0 0 / 23%);
+}
+.insurance__card_provider_info:not(:first-child) {
+  margin-top: 1em;
 }
 .insurance__card_provider_info::before {
   content: '';
@@ -94,6 +100,7 @@
 .insurance_container_providers {
   background: white;
   padding: 5px 21px 12px 15px;
+  border-radius: 10px;
 }
 .client_dob_gender span {
   padding-right: 5px;
@@ -134,12 +141,6 @@
   margin-left: 8px;
 }
 
-.insurance_status {
-  padding: 2px 3px;
-  background: #e1dfe2;
-  text-align: center;
-}
-
 .cover_name {
   font-size: 11px;
   font-weight: 500;
@@ -161,4 +162,8 @@
 .insurance_benefits_name {
   font-size: 14px;
   font-weight: 800;
+}
+
+.btn-view img {
+  filter: brightness(0) invert(1);
 }
