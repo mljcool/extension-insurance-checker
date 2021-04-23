@@ -16,10 +16,25 @@ app.controller('pagerCtrl', function($scope) {
   $scope.doneSetup = false;
   $scope.isGettingStarted = false;
   $scope.hasData = true;
+  $scope.isSyncingData = false;
   $scope.insuranceList = [];
 
-  $scope.openComparison = (data) => {
-    viewComaparisonWindow(data);
+  $scope.openComparison = (
+    { clientInsurance, insurance },
+    parentIdx,
+    childIdx,
+  ) => {
+    console.log(parentIdx, childIdx);
+    $scope.isSyncingData = true;
+    $scope.listOFClientInsurances[parentIdx].insurances[childIdx].isSync = true;
+    setTimeout(() => {
+      $scope.isSyncingData = false;
+      $scope.listOFClientInsurances[parentIdx].insurances[
+        childIdx
+      ].isSync = false;
+      $scope.$apply();
+      // viewComaparisonWindow(data);
+    }, 5000);
   };
 
   const arrayReverseObj = (obj) => {
@@ -104,4 +119,5 @@ app.controller('pagerCtrl', function($scope) {
   // });
 
   $scope.insuranceLoginList = sampleInsuranceLis;
+  $scope.listOFClientInsurances = listOFClientInsurances;
 });

@@ -101,7 +101,10 @@
       </div>
 
       <div class="insurer-list" ng-if="!isGettingStarted">
-        <div class="insurance__content">
+        <div
+          class="insurance__content"
+          ng-repeat="clientInsurance in listOFClientInsurances track by $index"
+        >
           <div class="insurance__card__info">
             <div class="insurance__card_user_section">
               <div class="insurance__card_info_holder">
@@ -115,67 +118,60 @@
                     />
                   </div>
                   <div class="insurance__card_name_details">
-                    <span class="client_fname">Jane Norto</span>
-                    <span>sample@gmail.com</span>
+                    <span class="client_fname"
+                      >{{clientInsurance.fullName}}</span
+                    >
+                    <span>{{clientInsurance.email}}</span>
                     <div class="client_dob_gender">
-                      <span>Male</span>
+                      <span>{{clientInsurance.Gender}}</span>
                       <span class="diver-bullet">&#8226;</span>
-                      <span>July 13, 1994</span>
+                      <span>{{clientInsurance.DateOfBirth}}</span>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
             <div class="insurance_container_providers">
-              <div class="insurance__card_provider_info">
+              <div
+                class="insurance__card_provider_info"
+                ng-repeat="insurance in clientInsurance.insurances track by $index"
+              >
                 <div class="insurance__card_info_details">
                   <div class="insurance__card_logo_holder">
-                    <img src="./assets/insurers/6.png" class="insurer-logo" />
+                    <img
+                      ng-src="{{'./assets/insurers/'+insurance.providerId+'.png'}}"
+                      class="insurer-logo"
+                    />
                     <div class="insurer_stats">
-                      <span class="insurance_benefits_name">Partners Life</span>
-                      <span class="insurance_status">In -force</span>
+                      <span class="insurance_benefits_name"
+                        >{{insurance.providerName}}</span
+                      >
+                      <span class="insurance_status"
+                        >{{insurance.statusName}}</span
+                      >
                     </div>
                   </div>
 
                   <div class="insurance_compare_button">
                     <button
                       class="btn-view"
-                      ng-click="openComparison({'name': 'sada'})"
+                      ng-if="!insurance.isSync"
+                      ng-click="openComparison({clientInsurance, insurance}, $parent.$parent.$index, $parent.$index)"
                     >
                       compare
                     </button>
-                    <div class="switch_container">
+                    <div class="switch_container" ng-if="insurance.isSync">
                       <span class="loading-status">Syncing....</span>
                       <div class="circleloader"></div>
                     </div>
                   </div>
                 </div>
                 <div class="insurance__card_benefits_list">
-                  <span class="cover_name">Life Cover $1000</span>
-                  <span class="cover_name">Trauma Cover $1000</span>
-                  <span class="cover_name">Income Protection $1000</span>
-                </div>
-              </div>
-              <div class="insurance__card_provider_info">
-                <div class="insurance__card_info_details">
-                  <div class="insurance__card_logo_holder">
-                    <img src="./assets/insurers/4.png" class="insurer-logo" />
-                    <div class="insurer_stats">
-                      <span class="insurance_benefits_name">Asteron Life</span>
-                      <span class="insurance_status">In -force</span>
-                    </div>
-                  </div>
-
-                  <div class="insurance_compare_button">
-                    <button class="btn-view">
-                      compare
-                    </button>
-                  </div>
-                </div>
-                <div class="insurance__card_benefits_list">
-                  <span class="cover_name">Life Cover $1000</span>
-                  <span class="cover_name">Trauma Cover $1000</span>
-                  <span class="cover_name">Income Protection $1000</span>
+                  <span
+                    class="cover_name"
+                    ng-repeat="covers in insurance.benefits"
+                    >{{covers.benefitName}} {{covers.coverAmount}}</span
+                  >
                 </div>
               </div>
             </div>
