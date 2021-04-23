@@ -57,12 +57,6 @@ const getChromeIdentity = () => {
 const getExtensionStatus = () => {
   chrome.storage.sync.get('SWITCH', ({ SWITCH }) => {
     const isChecked = SWITCH === 'ON';
-    console.log('SWITCH', SWITCH);
-    $('#codepen').prop('checked', isChecked);
-    if (isChecked) {
-      removedFiltersLogo('none');
-      changeCssLogoBorder('2px #576475 solid');
-    }
   });
 };
 

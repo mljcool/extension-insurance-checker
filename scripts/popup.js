@@ -1,7 +1,6 @@
 $(function() {
   $('#codepen').change(function() {
     const isChecked = $(this).is(':checked');
-    console.log('isChecked', isChecked);
     if ($(this).is(':checked')) {
       chrome.notifications.clear('OFF', () => {
         chrome.runtime.sendMessage('', {
