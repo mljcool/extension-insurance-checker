@@ -1,6 +1,9 @@
 .insurer-list {
-  height: 370px;
-  overflow-x: scroll;
+  overflow-y: scroll;
+  max-height: 380px;
+  height: 100%;
+}
+.insurance__content {
   padding: 15px 20px;
   margin-top: 1em;
 }
@@ -57,12 +60,13 @@
 }
 .insurance_status {
   background: #b9b0c0;
-  border-radius: 5px;
+  border-radius: 3px;
   padding: 2px 3px;
   font-size: 11px;
   font-weight: 600;
   text-transform: uppercase;
   text-align: center;
+  color: #726f6f;
 }
 .insurance-name {
   font-size: 14px;

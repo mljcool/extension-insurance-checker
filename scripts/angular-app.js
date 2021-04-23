@@ -66,7 +66,10 @@ app.config([
 app.controller('pagerCtrl', function($scope) {
   $scope.message = 'COOL ANGULAR WORKING';
   $scope.isHideProfile = false;
+  $scope.doneSetup = false;
+  $scope.gettingStarted = false;
   $scope.hasData = true;
+  $scope.hideme = false;
   $scope.cards = delivcardDefaultData;
   // $scope.insuranceList = [];
   $scope.insuranceList = [
@@ -201,7 +204,9 @@ app.controller('pagerCtrl', function($scope) {
       clearStatusNotifications();
     }, 500);
   };
-
+  $scope.gettingStarted = () => {
+    $scope.gettingStarted = true;
+  };
   // listner from myCrm
 
   // chrome.storage.local.get('sampleCool', function(items) {
@@ -216,4 +221,70 @@ app.controller('pagerCtrl', function($scope) {
   //     });
   //   }
   // });
+
+  $scope.insuranceLoginList = [
+    {
+      id: 1,
+      providerName: 'AIA',
+      username: '',
+      password: '',
+      isConnected: false,
+    },
+    {
+      id: 3,
+      providerName: 'Fidelity',
+      username: '',
+      password: '',
+      isConnected: false,
+    },
+    {
+      id: 4,
+      providerName: 'Asteron Life',
+      username: '',
+      password: '',
+      isConnected: false,
+    },
+    {
+      id: 5,
+      providerName: 'NIB',
+      username: '',
+      password: '',
+      isConnected: false,
+    },
+    {
+      id: 6,
+      providerName: 'Partners Life',
+      username: '',
+      password: '',
+      isConnected: false,
+    },
+    {
+      id: 8,
+      providerName: 'AMP',
+      username: '',
+      password: '',
+      isConnected: false,
+    },
+    {
+      id: 9,
+      providerName: 'Cigna',
+      username: '',
+      password: '',
+      isConnected: false,
+    },
+    {
+      id: 10,
+      providerName: 'Southern Cross',
+      username: '',
+      password: '',
+      isConnected: false,
+    },
+    {
+      id: 11,
+      providerName: 'Accuro',
+      username: '',
+      password: '',
+      isConnected: false,
+    },
+  ];
 });

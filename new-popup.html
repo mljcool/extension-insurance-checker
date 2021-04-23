@@ -3,6 +3,7 @@
   <head>
     <title>Insurance Checker</title>
     <link rel="stylesheet" type="text/css" href="styles/ic-style.css" />
+    <link rel="stylesheet" type="text/css" href="styles/ic-login.css" />
     <link
       rel="stylesheet"
       type="text/css"
@@ -36,7 +37,9 @@
             </button>
             <div class="dropdown-content">
               <a href="#" ng-if="doneSetup">Update Credentials</a>
-              <a href="#" ng-if="!doneSetup">Setting up</a>
+              <a href="#" ng-if="!doneSetup" ng-click="gettingStarted();"
+                >Setting up</a
+              >
               <a href="#">Guide</a>
               <a href="#">Settings</a>
             </div>
@@ -94,7 +97,11 @@
         </div>
       </div>
 
-      <div class="insurer-list">
+      <div
+        ng-if="hideme"
+        class="insurer-list"
+        ng-class="{'hide-animate-list':  gettingStarted}"
+      >
         <div class="insurance__content">
           <div class="insurance__card__info">
             <div class="insurance__card_user_section">
@@ -178,6 +185,51 @@
         </div>
       </div>
       <!-- END CLIENT PROFILE -->
+      <!-- Start Login provider -->
+      <div class="login_list">
+        <div class="login_form_wrapper">
+          <div class="login_message">
+            <p>
+              Don't worry everything will be encrypted all personal information
+              safe and secure.
+            </p>
+          </div>
+          <div
+            class="login_form_type"
+            ng-repeat="insuranceConnect in insuranceLoginList track by $index"
+          >
+            <div class="login_header">
+              <div class="login_insurer_avatart">
+                <img
+                  width="68px"
+                  height="39px"
+                  ng-src="{{'./assets/insurers/'+insuranceConnect.id+'.png'}}"
+                />
+                <span class="login_insurer_name"
+                  >{{insuranceConnect.providerName}}</span
+                >
+              </div>
+            </div>
+            <div class="login_body">
+              <div class="login_fields">
+                <div class="login_fields_group">
+                  <label>Username/email</label>
+                  <input type="text" placeholder="type here.." />
+                </div>
+                <div class="login_fields_group">
+                  <label>Password</label>
+                  <input type="password" placeholder="type here.." />
+                </div>
+                <div class="login_fields_group buttons">
+                  <button>connect</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- End Login provider -->
 
       <div class="ic-footer">
         <span>If data not properly sync click me</span>
