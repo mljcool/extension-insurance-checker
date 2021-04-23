@@ -97,11 +97,7 @@
         </div>
       </div>
 
-      <div
-        ng-if="hideme"
-        class="insurer-list"
-        ng-class="{'hide-animate-list':  gettingStarted}"
-      >
+      <div class="insurer-list" ng-if="!isGettingStarted">
         <div class="insurance__content">
           <div class="insurance__card__info">
             <div class="insurance__card_user_section">
@@ -140,11 +136,7 @@
 
                   <div class="insurance_compare_button">
                     <button class="btn-view">
-                      <img
-                        src="./assets/carret.png"
-                        width="15px"
-                        height="15px"
-                      />
+                      compare
                     </button>
                   </div>
                 </div>
@@ -166,11 +158,7 @@
 
                   <div class="insurance_compare_button">
                     <button class="btn-view">
-                      <img
-                        src="./assets/carret.png"
-                        width="15px"
-                        height="15px"
-                      />
+                      compare
                     </button>
                   </div>
                 </div>
@@ -186,7 +174,7 @@
       </div>
       <!-- END CLIENT PROFILE -->
       <!-- Start Login provider -->
-      <div class="login_list">
+      <div class="login_list" ng-if="isGettingStarted">
         <div class="login_form_wrapper">
           <div class="login_message">
             <p>
@@ -197,6 +185,7 @@
           <div
             class="login_form_type"
             ng-repeat="insuranceConnect in insuranceLoginList track by $index"
+            ng-class="{'is-connected': insuranceConnect.isConnected}"
           >
             <div class="login_header">
               <div class="login_insurer_avatart">
@@ -208,6 +197,18 @@
                 <span class="login_insurer_name"
                   >{{insuranceConnect.providerName}}</span
                 >
+                <div
+                  class="login_connected_icon"
+                  ng-if="insuranceConnect.isConnected"
+                >
+                  <img
+                    width="48px"
+                    height="48px"
+                    class="insuranceConnect_icon"
+                    src="./assets/is-connected.svg"
+                  />
+                  <span class="login_status_label">Connected</span>
+                </div>
               </div>
             </div>
             <div class="login_body">
@@ -221,7 +222,8 @@
                   <input type="password" placeholder="type here.." />
                 </div>
                 <div class="login_fields_group buttons">
-                  <button>connect</button>
+                  <button ng-if="!insuranceConnect.isConnected">connect</button>
+                  <button ng-if="insuranceConnect.isConnected">Update</button>
                 </div>
               </div>
             </div>
@@ -232,16 +234,21 @@
       <!-- End Login provider -->
 
       <div class="ic-footer">
-        <span>If data not properly sync click me</span>
-        <div class="client-menus" ng-click="resyncData()" role="button">
-          <img
-            src="./assets/sync.png"
-            alt="refresh-sync-data"
-            width="18px"
-            height="18px"
-            class="refresh-sync-data"
-            ng-class="{'is-resync': isResync}"
-          />
+        <div class="container-footer" ng-if="!isGettingStarted">
+          <span>If data not properly sync click me</span>
+          <div class="client-menus" ng-click="resyncData()" role="button">
+            <img
+              src="./assets/sync.png"
+              alt="refresh-sync-data"
+              width="18px"
+              height="18px"
+              class="refresh-sync-data"
+              ng-class="{'is-resync': isResync}"
+            />
+          </div>
+        </div>
+        <div class="container-footer" ng-if="isGettingStarted">
+          <a ng-click="gettingStarted();"><< Back To List</a>
         </div>
       </div>
     </div>

@@ -441,3 +441,15 @@ body {
     transform: rotate(360deg);
   }
 }
+
+.container-footer {
+  display: flex;
+}
+
+.container-footer a {
+  font-size: 12px;
+  cursor: pointer;
+}
+.container-footer a:hover {
+  color: #969696;
+}

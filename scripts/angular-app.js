@@ -67,7 +67,7 @@ app.controller('pagerCtrl', function($scope) {
   $scope.message = 'COOL ANGULAR WORKING';
   $scope.isHideProfile = false;
   $scope.doneSetup = false;
-  $scope.gettingStarted = false;
+  $scope.isGettingStarted = false;
   $scope.hasData = true;
   $scope.hideme = false;
   $scope.cards = delivcardDefaultData;
@@ -205,7 +205,7 @@ app.controller('pagerCtrl', function($scope) {
     }, 500);
   };
   $scope.gettingStarted = () => {
-    $scope.gettingStarted = true;
+    $scope.isGettingStarted = !$scope.isGettingStarted;
   };
   // listner from myCrm
 
@@ -235,7 +235,7 @@ app.controller('pagerCtrl', function($scope) {
       providerName: 'Fidelity',
       username: '',
       password: '',
-      isConnected: false,
+      isConnected: true,
     },
     {
       id: 4,
