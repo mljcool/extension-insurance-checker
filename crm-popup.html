@@ -196,25 +196,33 @@
           >
             <div class="login_header">
               <div class="login_insurer_avatart">
-                <img
-                  width="68px"
-                  height="39px"
-                  ng-src="{{'./assets/insurers/'+insuranceConnect.id+'.png'}}"
-                />
-                <span class="login_insurer_name"
-                  >{{insuranceConnect.providerName}}</span
-                >
+                <div class="logo_status_labels">
+                  <div class="logo_holder">
+                    <img
+                      width="68px"
+                      height="39px"
+                      ng-src="{{'./assets/insurers/'+insuranceConnect.id+'.png'}}"
+                    />
+                    <span class="login_insurer_name"
+                      >{{insuranceConnect.providerName}}</span
+                    >
+                  </div>
+                </div>
+
                 <div
                   class="login_connected_icon"
                   ng-if="insuranceConnect.isConnected && !insuranceConnect.isSyncing"
                 >
                   <img
-                    width="48px"
-                    height="48px"
+                    width="44px"
+                    height="44px"
                     class="insuranceConnect_icon"
                     src="./assets/is-connected.svg"
                   />
                   <span class="login_status_label">Connected</span>
+                  <span class="login_insurer_date_connected">
+                    Jan 15, 2021
+                  </span>
                 </div>
                 <div
                   class="switch_container"
