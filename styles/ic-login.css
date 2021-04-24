@@ -170,3 +170,14 @@
   font-weight: 500;
   color: #fff;
 }
+
+.login_error_message {
+  font-size: 11px;
+  padding: 5px;
+  border: 1px solid #eb6f6f;
+  background: #e96363;
+  margin-bottom: 7px;
+  border-radius: 8px;
+  font-style: italic;
+  color: #fff;
+}

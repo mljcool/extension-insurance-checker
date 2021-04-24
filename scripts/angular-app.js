@@ -96,8 +96,16 @@ app.controller('pagerCtrl', function($scope) {
   };
 
   $scope.connectToProvider = (type, data, idx) => {
-    $scope.insuranceLoginList[idx].isSyncing = true;
     console.log(data);
+    const { username, password } = data;
+    if (!username || !password) {
+      $scope.insuranceLoginList[idx].message =
+        'Please make sure to provide username or password';
+
+      return;
+    }
+    $scope.insuranceLoginList[idx].message = '';
+    $scope.insuranceLoginList[idx].isSyncing = true;
     setTimeout(() => {
       $scope.insuranceLoginList[idx].isSyncing = false;
       $scope.insuranceLoginList[idx].isConnected = true;

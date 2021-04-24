@@ -237,6 +237,10 @@
               </div>
             </div>
             <div class="login_body">
+                <div ng-if="!!insuranceConnect.message" class="login_error_message">
+                    <p>{{insuranceConnect.message}}</pa>
+                </div>
+
               <div class="login_fields">
                 <div class="login_fields_group">
                   <label>Username/email</label>
