@@ -33,7 +33,7 @@
 }
 .login_form_type {
   position: relative;
-  padding: 15px 25px;
+  padding: 10px 21px;
   background: white;
   border-radius: 9px;
   box-shadow: 0px 3px 6px rgb(0 0 0 / 16%), 0px 3px 6px rgb(0 0 0 / 23%);
@@ -68,7 +68,7 @@
   margin-top: 15px;
 }
 .login_body {
-  margin-top: 25px;
+  margin-top: 20px;
 }
 
 .login_fields_group {
@@ -96,6 +96,7 @@
   display: block;
   text-align: center;
   margin-top: 10px;
+  margin-bottom: 8px;
 }
 
 .login_fields_group label {
