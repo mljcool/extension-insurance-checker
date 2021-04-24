@@ -41,7 +41,10 @@
             <div class="dropdown-content">
               <a href="#" ng-if="doneSetup">Update Credentials</a>
               <a href="#" ng-if="!doneSetup" ng-click="gettingStarted();"
-                >Setting up</a
+                >
+                
+                {{ isGettingStarted ? '<< Back To List' : 'Setting up'}}
+                </a
               >
               <a href="#">Guide</a>
               <a href="#">Settings</a>

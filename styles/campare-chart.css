@@ -546,6 +546,12 @@ ul {
   margin: 0;
 }
 
+.main-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .orgchart {
   /*     background: rgba(185, 203, 233, 0.2); */
   background-image: none;
@@ -628,7 +634,8 @@ ul {
 
 .orgchart .node.focused,
 .orgchart .node:hover {
-  background-color: rgba(127, 198, 249, 0.3);
+  background-color: #ad96bb;
+  border-radius: 4px;
 }
 
 .orgchart tr.lines .downLine {
@@ -693,12 +700,19 @@ ul {
 .employee-card .info-block .personal-info {
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-align: start;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: center;
 }
 
 .employee-card .info-block .profile-image {
   width: 4em;
+  height: 4em;
+  -o-object-fit: cover;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.employee-card .info-block .inurance-image {
   height: 4em;
   -o-object-fit: cover;
   object-fit: cover;
@@ -722,4 +736,15 @@ ul {
   padding: 2px 4px;
   display: inline-block;
   border-radius: 3px;
+}
+
+.logo-wrappers {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+}
+
+.inurance-image-logo {
+  width: 200px;
 }

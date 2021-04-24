@@ -24,18 +24,29 @@ app.controller('pagerCtrl', function($scope) {
     ].isSync = !$scope.listOFClientInsurances[parentIdx].insurances[childIdx]
       .isSync;
   };
+  /* 
+
+    when trigger openComparison then
+    1). CallAPI endpoint for scraping data from API.then((syncID) => {}) 
+
+    2).for API ASK for Sync endpoint after intercepting data from scraping 
+      w/c be handle by new pop-up window to call the endpoint viewComaparisonWindow
+    e.g 
+    https://insurance-checker/syncID=123456
+  */
 
   $scope.openComparison = (
     { clientInsurance, insurance },
     parentIdx,
     childIdx,
   ) => {
+    console.log(clientInsurance, insurance);
     toggleSyncing(parentIdx, childIdx);
     setTimeout(() => {
       toggleSyncing(parentIdx, childIdx);
       $scope.$apply();
-      // viewComaparisonWindow(data);
-    }, 5000);
+      viewComaparisonWindow({ clientInsurance });
+    }, 2000);
   };
 
   const arrayReverseObj = (obj) => {

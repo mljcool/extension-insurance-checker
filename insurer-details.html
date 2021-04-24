@@ -8,11 +8,14 @@
     <link rel="stylesheet" type="text/css" href="styles/campare-chart.css" />
 
     <script src="scripts/libs/angular.min.js"></script>
+    <script src="scripts/constants.js"></script>
     <script src="scripts/angular-view-details.js"></script>
   </head>
   <body ng-controller="viewCampareDetailsCtrl">
-    <h1>{{message}}</h1>
     <div class="main-wrapper">
+      <div class="logo-wrappers">
+        <img class="inurance-image-logo" src="/icons/mycrm-logo.png" />
+      </div>
       <div class="orgchart">
         <ul class="prime-list">
           <li>
@@ -22,15 +25,13 @@
                   <h4 class="name">Client Info</h4>
                 </div>
                 <div class="info-block">
-                  <h3 class="job-title">CEO</h3>
                   <div class="personal-info">
-                    <img
-                      class="profile-image"
-                      src="/static/media/user_image.7e779767.svg"
-                    />
+                    <img class="profile-image" src="assets/avatar-new.png" />
                     <div class="info-wrap">
-                      <h5 class="name">Peter Aramniani</h5>
-                      <h6 class="email">Sydney Head Office</h6>
+                      <h6 class="name">{{myCRMClient.fullName}}</h6>
+                      <h6 class="name">{{myCRMClient.Gender}}</h6>
+                      <h6 class="email">{{myCRMClient.email}}</h6>
+                      <h6 class="email">{{myCRMClient.DateOfBirth}}</h6>
                     </div>
                   </div>
                 </div>
@@ -47,11 +48,13 @@
                           <h4 class="name">MyCRM Info</h4>
                         </div>
                         <div class="info-block">
-                          <h3 class="job-title">Asteron Life</h3>
+                          <h3 class="job-title">
+                            {{myCRMInsurance.providerName}}
+                          </h3>
                           <div class="personal-info">
                             <img
-                              class="profile-image"
-                              src="/static/media/user_image.7e779767.svg"
+                              class="inurance-image"
+                              ng-src="{{'./assets/insurers/'+myCRMInsurance.providerId+'.png'}}"
                             />
                             <div class="info-wrap">
                               <h5 class="name">Peter Aramniani</h5>
@@ -69,11 +72,13 @@
                           <h4 class="name">Third Party info</h4>
                         </div>
                         <div class="info-block">
-                          <h3 class="job-title">Asteron Life</h3>
+                          <h3 class="job-title">
+                            {{myCRMInsurance.providerName}}
+                          </h3>
                           <div class="personal-info">
                             <img
-                              class="profile-image"
-                              src="/assets/insurers/1.png"
+                              class="inurance-image"
+                              ng-src="{{'./assets/insurers/'+myCRMInsurance.providerId+'.png'}}"
                             />
                             <div class="info-wrap">
                               <h5 class="name">Peter Aramniani</h5>
