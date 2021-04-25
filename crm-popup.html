@@ -17,9 +17,9 @@
     <script src="scripts/constants.js"></script>
     <script src="scripts/service-runtime.js"></script>
     <script src="scripts/angular-app.js"></script>
-    <!-- 
+    
     <script src="scripts/functions.js"></script>
-    <script src="scripts/popup.js"></script> -->
+    <script src="scripts/popup.js"></script>
   </head>
   <body ng-controller="pagerCtrl">
     <div class="main-wrapper">
@@ -66,8 +66,8 @@
               />
             </div>
             <div class="ic-profile-details">
-              <span>James Punnett</span>
-              <span class="small-details">ADVISER</span>
+              <span>{{adviserPreferredFullName}}</span>
+              <span class="small-details">{{adviserAccessType}}</span>
             </div>
           </div>
           <div class="ic-profile-sync">

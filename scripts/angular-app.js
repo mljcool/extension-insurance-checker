@@ -135,6 +135,7 @@ app.controller('pagerCtrl', function($scope) {
   $scope.toggleProfile = function() {
     $scope.isHideProfile = !$scope.isHideProfile;
   };
+  checkAdviserInforData({ $scope });
   // $scope.getClientData();
 
   $scope.insuranceLoginList = sampleInsuranceLis;

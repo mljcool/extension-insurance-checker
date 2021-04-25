@@ -35,3 +35,26 @@ const getInsApp = (requestURL) => {
     });
   }
 };
+
+// adivserInfo Section
+const setupAdviserInfoStorage = (setInfo) => {
+  chrome.storage.local.set({
+    adviserData: setInfo,
+  });
+};
+
+const setupAdviserInfoRuntime = () => {
+  getRequest(userInfo()).done((response) => {
+    const setInfo = mapAdviserInfo(response);
+    chrome.storage.sync.get('adviserData', function(items) {
+      if (!!items.adviserData) {
+        if (items.adviserData.clientId !== setInfo.clientId) {
+          setupAdviserInfoStorage(setInfo);
+        }
+      } else {
+        setupAdviserInfoStorage(setInfo);
+      }
+    });
+    console.log('setupAdviserInfoRuntime API', setInfo);
+  });
+};

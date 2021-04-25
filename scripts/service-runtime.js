@@ -41,3 +41,33 @@ const onLoadSyncData = ({ $scope }) => {
     }
   });
 };
+
+const checkAdviserInforData = ({ $scope }) => {
+  chrome.storage.local.get('adviserData', function(items) {
+    if (!!items.adviserData) {
+      const {
+        firstName,
+        lastName,
+        preferredFullName,
+        accessType,
+        email,
+      } = items.adviserData;
+
+      console.log('adviserData angular', items.adviserData);
+      const ACCESS_TYPE = {
+        1: 'PRINCIPAL ADVISER',
+        2: 'ADVISER',
+        3: 'ADMIN ASSISTANT',
+        4: 'ASSISTANT',
+        5: 'CORPORATE',
+        9: 'REFERRER',
+      };
+      $scope.adviserFirstName = firstName;
+      $scope.adviserLastName = lastName;
+      $scope.adviserPreferredFullName = preferredFullName;
+      $scope.adviserAccessType = ACCESS_TYPE[accessType];
+      $scope.adviserEmail = email;
+      $scope.$apply();
+    }
+  });
+};

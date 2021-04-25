@@ -1,6 +1,6 @@
 const baseURL = 'https://api.sit.mycrm.finance/';
 
-const userInfo = () => 'GetUserInfo';
+const userInfo = () => baseURL + 'GetUserInfo';
 
 const getClientInfoURL = (familyId) => {
   const url =
@@ -98,5 +98,6 @@ const mapAdviserInfo = (adviserData = {}) => {
     preferredFullName: setKeys('PreferredFullName'),
     accessType: setKeys('AccessType'),
     email: setKeys('Email'),
+    clientId: setKeys('ClientId'),
   };
 };
