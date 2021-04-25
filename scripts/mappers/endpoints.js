@@ -74,6 +74,9 @@ const mapClientsInsurance = (insuranceList = []) => {
       clientID: setKeys('ClientID'),
       benefitName: setKeys('BenefitName'),
       coverAmount: setKeys('CoverAmount'),
+      firstName: setKeys('FirstName'),
+      lastName: setKeys('LastName'),
+      benefitTotalPremium: setKeys('BenefitTotalPremium'),
     };
   };
 

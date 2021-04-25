@@ -43,18 +43,22 @@ const setupAdviserInfoStorage = (setInfo) => {
   });
 };
 
-const setupAdviserInfoRuntime = () => {
-  getRequest(userInfo()).done((response) => {
-    const setInfo = mapAdviserInfo(response);
-    chrome.storage.sync.get('adviserData', function(items) {
-      if (!!items.adviserData) {
-        if (items.adviserData.clientId !== setInfo.clientId) {
+const setupAdviserInfoRuntime = (requestURL) => {
+  const splitURL = urlSPliter(requestURL);
+  const revalidateURL = !!splitURL.find((url) => url.includes('#'));
+  if (!!splitURL.length && revalidateURL) {
+    getRequest(userInfo()).done((response) => {
+      const setInfo = mapAdviserInfo(response);
+      chrome.storage.sync.get('adviserData', function(items) {
+        if (!!items.adviserData) {
+          if (items.adviserData.clientId !== setInfo.clientId) {
+            setupAdviserInfoStorage(setInfo);
+          }
+        } else {
           setupAdviserInfoStorage(setInfo);
         }
-      } else {
-        setupAdviserInfoStorage(setInfo);
-      }
+      });
+      console.log('setupAdviserInfoRuntime API', setInfo);
     });
-    console.log('setupAdviserInfoRuntime API', setInfo);
-  });
+  }
 };

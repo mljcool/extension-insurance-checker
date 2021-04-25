@@ -17,11 +17,8 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 
 $(function() {
   setTimeout(function() {
-    setupAdviserInfoRuntime();
-    console.log('sssssssssssssssssss');
-    // chrome.runtime.sendMessage('', {
-    //   senderFrom: 'myCRM',
-    //   message: 'CHECK_INFOSSSSSS',
-    // });
+    const requestURL = window.location.href;
+    getInsApp(requestURL);
+    setupAdviserInfoRuntime(requestURL);
   }, 2000);
 });
