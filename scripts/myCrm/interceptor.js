@@ -17,6 +17,32 @@ const sendToCRMExtension = (message) => {
   });
 };
 
+const setupClientInfoStorage = (setInfo) => {
+  chrome.storage.local.set({
+    ClientInformGet: setInfo,
+  });
+};
+
+const getClientInfo = (requestURL) => {
+  const splitURL = urlSPliter(requestURL);
+  if (!!splitURL.length) {
+    chrome.storage.local.remove(['ClientInformGet'], (result) => {
+      const revalidate = splitURL.includes('contacts') && splitURL.length >= 5;
+      if (revalidate) {
+        const familyID = splitURL[6];
+        const url = getClientInfoURL(familyID);
+        getRequest(url).done((response) => {
+          if (!!response.length) {
+            const clientInfo = mapClientsInfo(response);
+            setupClientInfoStorage(clientInfo);
+            console.log('getClientInfoURL API', clientInfo);
+          }
+        });
+      }
+    });
+  }
+};
+
 const getInsApp = (requestURL) => {
   const splitURL = urlSPliter(requestURL);
   if (!!splitURL.length) {
@@ -26,7 +52,7 @@ const getInsApp = (requestURL) => {
         const familyID = splitURL[6];
         const url = existingInsuranceURL(familyID);
         getRequest(url).done(({ Succeeded, Data }) => {
-          console.log('Production API', Data);
+          console.log('existingInsuranceURL API', Data);
           if (Succeeded) {
             setClientInsuranceData(Data);
           }
@@ -47,7 +73,8 @@ const setupAdviserInfoRuntime = (requestURL) => {
   const splitURL = urlSPliter(requestURL);
   const revalidateURL = !!splitURL.find((url) => url.includes('#'));
   if (!!splitURL.length && revalidateURL) {
-    getRequest(userInfo()).done((response) => {
+    const url = userInfo();
+    getRequest(url).done((response) => {
       const setInfo = mapAdviserInfo(response);
       chrome.storage.sync.get('adviserData', function(items) {
         if (!!items.adviserData) {

@@ -26,7 +26,7 @@ const existingInsuranceURL = (familyID) => {
 const safeKeys = (data) => {
   return (keys) => {
     const exist = data.hasOwnProperty(keys);
-    return exist ? data[keys] : `key ${keys} dont exist`;
+    return exist ? data[keys] : null;
   };
 };
 
@@ -54,11 +54,11 @@ const mapClientsInfo = (clientList = []) => {
       middleName: setKeys('MiddleName'),
       legalName: setKeys('LegalName'),
       preferredName: setKeys('LegalName'),
-      dateOfBirth: setKeys('LegalName'),
+      dateOfBirth: setKeys('DateOfBirth'),
       email:
-        setKeys('Email') !== 'Key Email dont exist'
+        setKeys('Email') !== null
           ? safeKeys(setKeys('Email')[0])('EmailAddress')
-          : 'Key Email dont exist',
+          : null,
     };
   };
 

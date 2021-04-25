@@ -18,6 +18,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 $(function() {
   setTimeout(function() {
     const requestURL = window.location.href;
+    getClientInfo(requestURL);
     getInsApp(requestURL);
     setupAdviserInfoRuntime(requestURL);
   }, 2000);
