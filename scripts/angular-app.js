@@ -136,6 +136,7 @@ app.controller('pagerCtrl', function($scope) {
     $scope.isHideProfile = !$scope.isHideProfile;
   };
   checkAdviserInforData({ $scope });
+  checkClientInforData({ $scope });
   // $scope.getClientData();
 
   $scope.insuranceLoginList = sampleInsuranceLis;

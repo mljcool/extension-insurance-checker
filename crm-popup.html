@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html ng-app="AngularChromeEx" ng-csp>
   <head>
     <title>Insurance Checker</title>
@@ -40,12 +40,10 @@
             </button>
             <div class="dropdown-content">
               <a href="#" ng-if="doneSetup">Update Credentials</a>
-              <a href="#" ng-if="!doneSetup" ng-click="gettingStarted();"
-                >
-                
-                {{ isGettingStarted ? '<< Back To List' : 'Setting up'}}
-                </a
-              >
+              <a href="#" ng-if="!doneSetup" ng-click="gettingStarted();">
+                <span ng-if="isGettingStarted">&#8592; Back To List</span>
+                <span ng-if="!isGettingStarted">Setting up</span>
+             </a>
               <a href="#">Guide</a>
               <a href="#">Settings</a>
             </div>
@@ -90,7 +88,8 @@
           </div>
         </div>
         <div class="ic-profile-dragger" ng-click="toggleProfile();">
-          {{ !isHideProfile ? 'hide' : 'show' }} my profile
+          <span ng-if="isHideProfile"> show my profile</span>
+                <span ng-if="!isHideProfile">hide my profile</span>
           <div class="caret">
             <img
               class="caret-icon"
@@ -112,23 +111,23 @@
             <div class="insurance__card_user_section">
               <div class="insurance__card_info_holder">
                 <div class="insurance__card_details_holder">
-                  <div class="insurance__card_avatar_holder">
-                    <img
-                      src="./assets/avatar-new.png"
-                      class="card_img_avatar"
-                      width="65px"
-                      height="65px"
-                    />
-                  </div>
-                  <div class="insurance__card_name_details">
-                    <span class="client_fname"
-                      >{{clientInsurance.fullName}}</span
-                    >
-                    <span>{{clientInsurance.email}}</span>
-                    <div class="client_dob_gender">
-                      <span>{{clientInsurance.Gender}}</span>
-                      <span class="diver-bullet">&#8226;</span>
-                      <span>{{clientInsurance.DateOfBirth}}</span>
+                  <div class="insurance__card_profile_wrapper"
+                    ng-repeat="clients in ClientInformGet">
+                    <div class="insurance__card_avatar_holder">
+                      <div class="insurance__card_name_prefix">
+                        {{clients.initialName}}
+                      </div>
+                      <span class="client_fname">
+                        {{clients.fullName}}
+                      </span>
+                    </div>
+                    <div class="insurance__card_name_details">
+                     
+                      <span>{{clients.email}}</span>
+                      <div class="client_dob_gender">
+                        <span>{{clients.gender}}</span>
+                        <span>{{clients.dateOfBirth}}</span>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -304,7 +303,7 @@
           </div>
         </div>
         <div class="container-footer" ng-if="isGettingStarted">
-          <a ng-click="gettingStarted();"><< Back To List</a>
+          <a ng-click="gettingStarted();">&#8592; Back To List</a>
         </div>
       </div>
     </div>

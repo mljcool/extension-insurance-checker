@@ -120,31 +120,6 @@ const listOFClientInsurances = [
       },
     ],
   },
-  {
-    PersonId: 12,
-    FamilyId: 2704817,
-    fullName: 'Sarah Doe',
-    fname: 'FullName',
-    lname: 'FullName',
-    email: 'sample@gmail.com',
-    Gender: 'Female',
-    DateOfBirth: 'Jul 13, 1994',
-    isConnected: false,
-    insurances: [
-      {
-        providerId: 6,
-        providerName: 'Partners Life',
-        statusName: 'In Force',
-        isSync: false,
-        benefits: [
-          {
-            benefitName: 'Life Cover',
-            coverAmount: '$5000',
-          },
-        ],
-      },
-    ],
-  },
 ];
 
 const compareData = {

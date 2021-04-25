@@ -55,6 +55,12 @@ const getFormattedDate = (date) => {
   return month + '/' + day + '/' + year;
 };
 
+const setInitials = (fname, lname) => {
+  const strsFormat = (str) => str.charAt(0).toUpperCase();
+  const setNames = strsFormat(fname) + '' + strsFormat(lname);
+  return setNames;
+};
+
 const mapClientsInfo = (clientList = []) => {
   const clientMapper = (data = {}) => {
     const setKeys = safeKeys(data);
@@ -65,7 +71,9 @@ const mapClientsInfo = (clientList = []) => {
       firstName: setKeys('FirstName'),
       middleName: setKeys('MiddleName'),
       legalName: setKeys('LegalName'),
-      preferredName: setKeys('LegalName'),
+      preferredName: setKeys('PreferredName'),
+      gender: setKeys('Gender'),
+      initialName: setInitials(setKeys('FirstName'), setKeys('LastName')),
       dateOfBirth: !setKeys('DateOfBirth')
         ? null
         : getFormattedDate(new Date(setKeys('DateOfBirth'))),

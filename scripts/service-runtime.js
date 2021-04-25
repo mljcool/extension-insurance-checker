@@ -71,3 +71,13 @@ const checkAdviserInforData = ({ $scope }) => {
     }
   });
 };
+
+const checkClientInforData = ({ $scope }) => {
+  chrome.storage.local.get('ClientInformGet', function(items) {
+    if (!!items.ClientInformGet) {
+      console.log('ClientInformGet angular', items.ClientInformGet);
+      $scope.ClientInformGet = items.ClientInformGet;
+      $scope.$apply();
+    }
+  });
+};
