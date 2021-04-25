@@ -43,6 +43,18 @@ const getRequest = (urlStr) => {
   return $.ajax(settings);
 };
 
+const getFormattedDate = (date) => {
+  var year = date.getFullYear();
+
+  var month = (1 + date.getMonth()).toString();
+  month = month.length > 1 ? month : '0' + month;
+
+  var day = date.getDate().toString();
+  day = day.length > 1 ? day : '0' + day;
+
+  return month + '/' + day + '/' + year;
+};
+
 const mapClientsInfo = (clientList = []) => {
   const clientMapper = (data = {}) => {
     const setKeys = safeKeys(data);
@@ -54,7 +66,9 @@ const mapClientsInfo = (clientList = []) => {
       middleName: setKeys('MiddleName'),
       legalName: setKeys('LegalName'),
       preferredName: setKeys('LegalName'),
-      dateOfBirth: setKeys('DateOfBirth'),
+      dateOfBirth: !setKeys('DateOfBirth')
+        ? null
+        : getFormattedDate(new Date(setKeys('DateOfBirth'))),
       email:
         setKeys('Email') !== null
           ? safeKeys(setKeys('Email')[0])('EmailAddress')
