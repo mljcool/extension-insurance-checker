@@ -55,7 +55,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #c8c8c8;
   padding-bottom: 6px;
 }
 .insurance_status {
@@ -103,7 +102,7 @@
 }
 .insurance_container_providers {
   background: white;
-  padding: 5px 21px 12px 15px;
+  padding: 5px 21px 18px 15px;
   border-radius: 10px;
 }
 .client_dob_gender span {
