@@ -81,3 +81,13 @@ const checkClientInforData = ({ $scope }) => {
     }
   });
 };
+
+const checkClientInsurances = ({ $scope }) => {
+  chrome.storage.local.get('clientsInsurances', function(items) {
+    if (!!items.clientsInsurances) {
+      console.log('clientsInsurances angular', items.clientsInsurances);
+      $scope.clientsInsurances = items.clientsInsurances;
+      $scope.$apply();
+    }
+  });
+};

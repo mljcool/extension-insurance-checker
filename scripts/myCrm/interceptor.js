@@ -4,18 +4,14 @@ const urlSPliter = (requestURL) => {
   return splitURL;
 };
 
-const setClientInsuranceData = (clientData) => {
-  chrome.storage.local.set({
-    clientsInsaApp: clientData.reverse(),
-  });
-};
-
 const sendToCRMExtension = (message) => {
   chrome.runtime.sendMessage('', {
     senderFrom: 'myCRM',
     message,
   });
 };
+
+// getClientInfo Section
 
 const setupClientInfoStorage = (setInfo) => {
   chrome.storage.local.set({
@@ -41,7 +37,14 @@ const getClientInfo = (requestURL) => {
   }
 };
 
-const getInsApp = (requestURL) => {
+// insurances Section
+const setClientInsuranceStorage = (clientData) => {
+  chrome.storage.local.set({
+    clientsInsurances: clientData,
+  });
+};
+
+const getInsurances = (requestURL) => {
   const splitURL = urlSPliter(requestURL);
   if (!!splitURL.length) {
     const revalidate = splitURL.includes('contacts') && splitURL.length >= 5;
@@ -49,9 +52,10 @@ const getInsApp = (requestURL) => {
       const familyID = splitURL[6];
       const url = existingInsuranceURL(familyID);
       getRequest(url).done(({ Succeeded, Data }) => {
-        console.log('existingInsuranceURL API', Data);
         if (Succeeded) {
-          setClientInsuranceData(Data);
+          const insurances = mapClientsInsurance(Data);
+          setClientInsuranceStorage(insurances);
+          console.log('existingInsuranceURL API', insurances);
         }
       });
     }

@@ -3,7 +3,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
   const callImportants = () => {
     const requestURL = window.location.href;
     getClientInfo(requestURL);
-    getInsApp(requestURL);
+    getInsurances(requestURL);
   };
 
   switch (true) {
@@ -24,7 +24,7 @@ $(function() {
   setTimeout(function() {
     const requestURL = window.location.href;
     getClientInfo(requestURL);
-    getInsApp(requestURL);
+    getInsurances(requestURL);
     setupAdviserInfoRuntime(requestURL);
   }, 2000);
 });

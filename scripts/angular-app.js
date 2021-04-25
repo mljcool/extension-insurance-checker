@@ -137,6 +137,7 @@ app.controller('pagerCtrl', function($scope) {
   };
   checkAdviserInforData({ $scope });
   checkClientInforData({ $scope });
+  checkClientInsurances({ $scope });
   // $scope.getClientData();
 
   $scope.insuranceLoginList = sampleInsuranceLis;

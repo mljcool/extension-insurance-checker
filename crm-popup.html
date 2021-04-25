@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html ng-app="AngularChromeEx" ng-csp>
   <head>
     <title>Insurance Checker</title>
@@ -136,12 +137,12 @@
             <div class="insurance_container_providers">
               <div
                 class="insurance__card_provider_info"
-                ng-repeat="insurance in clientInsurance.insurances track by $index"
+                ng-repeat="insurance in clientsInsurances track by $index"
               >
                 <div class="insurance__card_info_details">
                   <div class="insurance__card_logo_holder">
                     <img
-                      ng-src="{{'./assets/insurers/'+insurance.providerId+'.png'}}"
+                      ng-src="{{'./assets/insurers/'+insurance.providerID+'.png'}}"
                       class="insurer-logo"
                     />
                     <div class="insurer_stats">
@@ -171,9 +172,14 @@
                 <div class="insurance__card_benefits_list">
                   <span
                     class="cover_name"
-                    ng-repeat="covers in insurance.benefits"
-                    >{{covers.benefitName}} {{covers.coverAmount}}</span
+                    ng-repeat="covers in insurance.benefitDetails"
                   >
+                    {{covers.benefitName}} {{covers.coverAmount | currency : '$'
+                    : 2}} - (
+                    <span class="cover_name_client"
+                      >{{ covers.firstName}}{{ covers.lastName}}</span
+                    >)
+                  </span>
                 </div>
               </div>
             </div>

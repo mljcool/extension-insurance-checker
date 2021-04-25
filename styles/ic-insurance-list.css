@@ -1,6 +1,6 @@
 .insurer-list {
-  overflow-y: scroll;
-  max-height: 380px;
+  overflow-y: auto;
+  max-height: 370px;
   height: 100%;
 }
 .insurance__content {
@@ -130,7 +130,7 @@
     0 1px 5px 0 rgb(0 0 0 / 12%);
 }
 .insurance__card_provider_info:not(:first-child) {
-  margin-top: 1em;
+  margin-top: 1.5em;
 }
 .insurance__card_provider_info::before {
   content: '';

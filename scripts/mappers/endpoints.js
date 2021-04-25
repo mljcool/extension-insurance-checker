@@ -23,7 +23,7 @@ const existingInsuranceURL = (familyID) => {
 
 // all Mappers
 
-const safeKeys = (data) => {
+const safeKeys = (data = {}) => {
   return (keys) => {
     const exist = data.hasOwnProperty(keys);
     return exist ? data[keys] : null;
@@ -106,9 +106,11 @@ const mapClientsInsurance = (insuranceList = []) => {
     const setKeys = safeKeys(data);
     return {
       providerID: setKeys('ProviderID'),
+      providerName: setKeys('ProviderName'),
       statusName: setKeys('StatusName'),
       isApplication: setKeys('IsApplication'),
       benefitDetails: setKeys('BenefitDetails').map(benefitsMapper),
+      isSync: false,
     };
   };
 
