@@ -1,15 +1,20 @@
 chrome.runtime.sendMessage({ todo: 'showPageAction' });
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
-  console.log('>>>>>>>>>>> injector', request);
+  const callImportants = () => {
+    const requestURL = window.location.href;
+    getClientInfo(requestURL);
+    getInsApp(requestURL);
+  };
+
   switch (true) {
     case request.sendScope === 'getScope':
       console.log('getScope >>>> ');
       // getInsApp(request.tabURL);
-      sendToCRMExtension('getScope');
+      callImportants();
       break;
     case request.message === 'urlChange':
       console.log('urlChange >>>> ');
-      sendToCRMExtension('urlChange');
+      callImportants();
       // getInsApp(request.url);
       break;
   }

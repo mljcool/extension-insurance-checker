@@ -26,39 +26,35 @@ const setupClientInfoStorage = (setInfo) => {
 const getClientInfo = (requestURL) => {
   const splitURL = urlSPliter(requestURL);
   if (!!splitURL.length) {
-    chrome.storage.local.remove(['ClientInformGet'], (result) => {
-      const revalidate = splitURL.includes('contacts') && splitURL.length >= 5;
-      if (revalidate) {
-        const familyID = splitURL[6];
-        const url = getClientInfoURL(familyID);
-        getRequest(url).done((response) => {
-          if (!!response.length) {
-            const clientInfo = mapClientsInfo(response);
-            setupClientInfoStorage(clientInfo);
-            console.log('getClientInfoURL API', clientInfo);
-          }
-        });
-      }
-    });
+    const revalidate = splitURL.includes('contacts') && splitURL.length >= 5;
+    if (revalidate) {
+      const familyID = splitURL[6];
+      const url = getClientInfoURL(familyID);
+      getRequest(url).done((response) => {
+        if (!!response.length) {
+          const clientInfo = mapClientsInfo(response);
+          setupClientInfoStorage(clientInfo);
+          console.log('getClientInfoURL API', clientInfo);
+        }
+      });
+    }
   }
 };
 
 const getInsApp = (requestURL) => {
   const splitURL = urlSPliter(requestURL);
   if (!!splitURL.length) {
-    chrome.storage.local.remove(['clientsInsaApp'], (result) => {
-      const revalidate = splitURL.includes('contacts') && splitURL.length >= 5;
-      if (revalidate) {
-        const familyID = splitURL[6];
-        const url = existingInsuranceURL(familyID);
-        getRequest(url).done(({ Succeeded, Data }) => {
-          console.log('existingInsuranceURL API', Data);
-          if (Succeeded) {
-            setClientInsuranceData(Data);
-          }
-        });
-      }
-    });
+    const revalidate = splitURL.includes('contacts') && splitURL.length >= 5;
+    if (revalidate) {
+      const familyID = splitURL[6];
+      const url = existingInsuranceURL(familyID);
+      getRequest(url).done(({ Succeeded, Data }) => {
+        console.log('existingInsuranceURL API', Data);
+        if (Succeeded) {
+          setClientInsuranceData(Data);
+        }
+      });
+    }
   }
 };
 
