@@ -200,6 +200,7 @@
   border: 2px dashed transparent;
   text-align: center;
   width: 130px;
+  height: 100%;
 }
 
 .orgchart.l2r .node,
@@ -775,4 +776,70 @@ ul {
   text-transform: uppercase;
   padding: 3px !important;
   color: #f0f0f0;
+}
+.ins_details_img {
+  display: flex;
+  margin-top: 2px;
+  padding: 4px;
+}
+.ins_dets {
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  margin-left: 5px;
+}
+.insurance_initial {
+  border-radius: 50%;
+  background: #9a86a8;
+  color: white;
+  padding: 4px;
+  font-size: 8px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 15px;
+  height: 15px;
+  justify-content: center;
+}
+.insurance_cov_d {
+  margin-left: 5px;
+}
+.insurance_cov_m {
+  margin-left: 5px;
+}
+.list_ins {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+.insurance_initialnames {
+  border-radius: 50%;
+  background: #9a86a8;
+  color: white;
+  padding: 4px;
+  font-size: 15px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  justify-content: center;
+}
+
+.third_data_info {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center;
+  margin-top: 10px;
+}
+.info_wrap_third {
+  text-align: center;
+  font-size: 14px;
+  font-style: italic;
+  border: 1px solid #eeeaf2;
+  border-radius: 4px;
+  padding: 10px;
 }

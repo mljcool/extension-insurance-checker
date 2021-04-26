@@ -29,7 +29,9 @@
                     class="client_block"
                     ng-repeat="client in myCRMClient track by $index"
                   >
-                    <img class="profile-image" src="assets/avatar-new.png" />
+                    <span class="insurance_initialnames">
+                      {{client.initialName }}
+                    </span>
                     <div class="info-wrap">
                       <h6 class="name">{{client.fullName}}</h6>
                       <h6 class="name">{{client.gender}}</h6>
@@ -51,25 +53,35 @@
                           <h4 class="name">MyCRM Info</h4>
                         </div>
                         <div class="info-block">
-                          <h3 class="job-title">
-                            {{myCRMInsurance.providerName}}
-                          </h3>
-                          <div class="personal-info">
+                          <div class="ins_details_img">
                             <img
                               class="inurance-image"
                               ng-src="{{'./assets/insurers/'+myCRMInsurance.providerID+'.png'}}"
                             />
-                            <div class="info-wrap">
+                            <div class="ins_dets">
                               <h5 class="name insurance_status">
                                 {{myCRMInsurance.statusName}}
                               </h5>
+                              <h3 class="insurance_provider_name">
+                                {{myCRMInsurance.providerName}}
+                              </h3>
+                            </div>
+                          </div>
+
+                          <div class="personal-info">
+                            <div class="info-wrap">
                               <div
                                 class="ins_details"
                                 ng-repeat="benefits in myCRMInsurance.benefitDetails track by $index"
                               >
-                                <h6 class="email">
-                                  <span>{{benefits.benefitName }}</span>
-                                  <span>
+                                <h6 class="email list_ins">
+                                  <span class="insurance_initial">
+                                    {{benefits.initialName }}
+                                  </span>
+                                  <span class="insurance_cov_d"
+                                    >{{benefits.benefitName }}</span
+                                  >
+                                  <span class="insurance_cov_m">
                                     {{benefits.coverAmount | currency : '$' :
                                     2}}
                                   </span>
@@ -91,13 +103,15 @@
                           <h3 class="job-title">
                             {{myCRMInsurance.providerName}}
                           </h3>
-                          <div class="personal-info">
-                            <img
-                              class="inurance-image"
-                              ng-src="{{'./assets/insurers/'+myCRMInsurance.providerID+'.png'}}"
-                            />
-                            <div class="info-wrap">
-                              <h5 class="name">There are no data available</h5>
+                          <img
+                            class="inurance-image"
+                            ng-src="{{'./assets/insurers/'+myCRMInsurance.providerID+'.png'}}"
+                          />
+                          <div class="personal-info third_data_info">
+                            <div class="info-wrap info_wrap_third">
+                              <h5 class="name">
+                                There are no data available yet
+                              </h5>
                               <h6 class="email">Coming soon</h6>
                             </div>
                           </div>

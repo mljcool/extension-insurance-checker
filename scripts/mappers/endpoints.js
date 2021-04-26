@@ -109,6 +109,7 @@ const mapClientsInsurance = (insuranceList = []) => {
       lastName: setKeys('LastName'),
       benefitTotalPremium: setKeys('BenefitTotalPremium'),
       isSync: false,
+      initialName: setInitials(setKeys('FirstName'), setKeys('LastName')),
     };
   };
 
