@@ -712,6 +712,10 @@ ul {
 .employee-card .info-block .client_block {
   display: flex;
 }
+.client_block:not(:last-child) {
+  border-bottom: 1px solid #eeeaf2;
+  margin-bottom: 7px;
+}
 .client_block {
   padding: 4px;
 }
