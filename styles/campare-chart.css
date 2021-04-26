@@ -707,7 +707,6 @@ ul {
 .employee-card .info-block .personal-info {
   display: flex;
   align-items: center;
-  justify-content: center;
 }
 .employee-card .info-block .client_block {
   display: flex;
@@ -766,4 +765,14 @@ ul {
 
 .inurance-image-logo {
   width: 200px;
+}
+
+.insurance_status {
+  background: #a897b4;
+  border-radius: 8px;
+  display: block;
+  text-align: center;
+  text-transform: uppercase;
+  padding: 3px !important;
+  color: #f0f0f0;
 }

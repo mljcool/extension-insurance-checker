@@ -26,5 +26,5 @@ $(function() {
     getClientInfo(requestURL);
     getInsurances(requestURL);
     setupAdviserInfoRuntime(requestURL);
-  }, 2000);
+  }, 2500);
 });
