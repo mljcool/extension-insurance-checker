@@ -54,7 +54,7 @@ const getInsurances = (requestURL) => {
       getRequest(url).done(({ Succeeded, Data }) => {
         if (Succeeded) {
           const insurances = mapClientsInsurance(Data);
-          setClientInsuranceStorage(insurances);
+          setClientInsuranceStorage(insurances.sort().reverse());
           console.log('existingInsuranceURL API', insurances);
         }
       });

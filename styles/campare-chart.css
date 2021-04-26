@@ -594,7 +594,10 @@ ul {
   content: '';
   position: absolute;
   bottom: -23px;
-  left: 99px;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
   width: 2px;
   height: 21px;
   background: #b3bec7;
@@ -690,6 +693,10 @@ ul {
   padding: 0 5px 5px;
   border-top: 4px solid #eeeaf2;
 }
+.employee-card .client_details_block {
+  display: flex;
+  flex-direction: column;
+}
 
 .employee-card .info-block .job-title {
   font-size: 1.2em;
@@ -698,10 +705,18 @@ ul {
 }
 
 .employee-card .info-block .personal-info {
-  display: -ms-flexbox;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.employee-card .info-block .client_block {
+  display: flex;
+}
+.client_block {
+  padding: 4px;
+}
+.client_node {
+  width: fit-content !important;
 }
 
 .employee-card .info-block .profile-image {

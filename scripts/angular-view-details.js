@@ -21,11 +21,15 @@ app.controller('viewCampareDetailsCtrl', [
     $scope.myCRMClient = {};
     $scope.myCRMInsurance = {};
     $scope.syncData = {};
-    getSyncData().then(({ myCRMClient, myCRMInsurance, syncData }) => {
-      console.log(myCRMInsurance);
+    getSyncDataClient().then((myCRMClient) => {
       $scope.myCRMClient = myCRMClient;
-      $scope.myCRMInsurance = myCRMInsurance;
-      $scope.syncData = syncData;
+      console.log('details angular', myCRMClient);
+      $scope.$apply();
+    });
+
+    getSyncDataInsurance(getSycnID).then((myCRMInsurances) => {
+      $scope.myCRMInsurance = myCRMInsurances;
+      console.log('details angular', myCRMInsurances);
       $scope.$apply();
     });
   },

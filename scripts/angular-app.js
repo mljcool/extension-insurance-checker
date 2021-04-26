@@ -18,10 +18,8 @@ app.controller('pagerCtrl', function($scope) {
   $scope.hasData = true;
   $scope.insuranceList = [];
 
-  const toggleSyncing = (parentIdx, childIdx) => {
-    $scope.listOFClientInsurances[parentIdx].insurances[
-      childIdx
-    ].isSync = !$scope.listOFClientInsurances[parentIdx].insurances[childIdx]
+  const toggleSyncing = (idx) => {
+    $scope.clientsInsurances[idx].isSync = !$scope.clientsInsurances[idx]
       .isSync;
   };
   /* 
@@ -35,17 +33,13 @@ app.controller('pagerCtrl', function($scope) {
     https://insurance-checker/syncID=123456
   */
 
-  $scope.openComparison = (
-    { clientInsurance, insurance },
-    parentIdx,
-    childIdx,
-  ) => {
-    console.log(clientInsurance, insurance);
-    toggleSyncing(parentIdx, childIdx);
+  $scope.openComparison = ({ insurance }, parentIdx) => {
+    console.log(insurance);
+    toggleSyncing(parentIdx);
     setTimeout(() => {
-      toggleSyncing(parentIdx, childIdx);
+      toggleSyncing(parentIdx);
       $scope.$apply();
-      viewComaparisonWindow({ clientInsurance });
+      viewComaparisonWindow({ insurance });
     }, 2000);
   };
 

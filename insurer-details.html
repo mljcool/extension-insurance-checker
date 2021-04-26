@@ -19,19 +19,22 @@
       <div class="orgchart">
         <ul class="prime-list">
           <li>
-            <div class="node">
+            <div class="node client_node">
               <div class="employee-card">
                 <div class="department-info">
                   <h4 class="name">Client Info</h4>
                 </div>
-                <div class="info-block">
-                  <div class="personal-info">
+                <div class="info-block client_details_block">
+                  <div
+                    class="client_block"
+                    ng-repeat="client in myCRMClient track by $index"
+                  >
                     <img class="profile-image" src="assets/avatar-new.png" />
                     <div class="info-wrap">
-                      <h6 class="name">{{myCRMClient.fullName}}</h6>
-                      <h6 class="name">{{myCRMClient.Gender}}</h6>
-                      <h6 class="email">{{myCRMClient.email}}</h6>
-                      <h6 class="email">{{myCRMClient.DateOfBirth}}</h6>
+                      <h6 class="name">{{client.fullName}}</h6>
+                      <h6 class="name">{{client.gender}}</h6>
+                      <h6 class="email">{{client.email}}</h6>
+                      <h6 class="email">{{client.dateOfBirth}}</h6>
                     </div>
                   </div>
                 </div>
@@ -54,7 +57,7 @@
                           <div class="personal-info">
                             <img
                               class="inurance-image"
-                              ng-src="{{'./assets/insurers/'+myCRMInsurance.providerId+'.png'}}"
+                              ng-src="{{'./assets/insurers/'+myCRMInsurance.providerID+'.png'}}"
                             />
                             <div class="info-wrap">
                               <h5 class="name">Peter Aramniani</h5>
@@ -78,7 +81,7 @@
                           <div class="personal-info">
                             <img
                               class="inurance-image"
-                              ng-src="{{'./assets/insurers/'+myCRMInsurance.providerId+'.png'}}"
+                              ng-src="{{'./assets/insurers/'+myCRMInsurance.providerID+'.png'}}"
                             />
                             <div class="info-wrap">
                               <h5 class="name">Peter Aramniani</h5>

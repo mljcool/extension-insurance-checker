@@ -1,11 +1,11 @@
-const viewComaparisonWindow = (data) => {
+const viewComaparisonWindow = ({ insurance }) => {
+  const { syncID } = insurance;
   const w = 450;
   const h = 850;
   const left = screen.width / 2 - w / 2;
   const top = screen.height / 2 - h / 2;
   chrome.windows.create({
-    url:
-      chrome.extension.getURL('insurer-details.html') + '?syncID=' + '3123125',
+    url: chrome.extension.getURL('insurer-details.html') + '?syncID=' + syncID,
     type: 'panel',
     height: 650,
     width: 450,

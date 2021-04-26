@@ -25,7 +25,7 @@ const existingInsuranceURL = (familyID) => {
 
 const safeKeys = (data = {}) => {
   return (keys) => {
-    const exist = data.hasOwnProperty(keys);
+    const exist = (data || {}).hasOwnProperty(keys);
     return exist ? data[keys] : null;
   };
 };
@@ -37,7 +37,7 @@ const getRequest = (urlStr) => {
     method: 'GET',
     timeout: 0,
     headers: {
-      Authorization: 'Bearer ' + (mytime || {}).accessToken.value,
+      Authorization: 'Bearer ' + ((mytime || {}).accessToken || {}).value,
     },
   };
   return $.ajax(settings);
@@ -53,6 +53,15 @@ const getFormattedDate = (date) => {
   day = day.length > 1 ? day : '0' + day;
 
   return month + '/' + day + '/' + year;
+};
+
+const setSyncID = () => {
+  return (
+    '_' +
+    Math.random()
+      .toString(36)
+      .substr(2, 9)
+  );
 };
 
 const setInitials = (fname, lname) => {
@@ -99,6 +108,7 @@ const mapClientsInsurance = (insuranceList = []) => {
       firstName: setKeys('FirstName'),
       lastName: setKeys('LastName'),
       benefitTotalPremium: setKeys('BenefitTotalPremium'),
+      isSync: false,
     };
   };
 
@@ -106,11 +116,13 @@ const mapClientsInsurance = (insuranceList = []) => {
     const setKeys = safeKeys(data);
     return {
       providerID: setKeys('ProviderID'),
+      providerID: setKeys('ProviderID'),
       providerName: setKeys('ProviderName'),
       statusName: setKeys('StatusName'),
       isApplication: setKeys('IsApplication'),
       benefitDetails: setKeys('BenefitDetails').map(benefitsMapper),
       isSync: false,
+      syncID: setSyncID(),
     };
   };
 
