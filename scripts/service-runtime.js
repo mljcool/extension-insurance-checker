@@ -7,8 +7,8 @@ const viewComaparisonWindow = ({ insurance }) => {
   chrome.windows.create({
     url: chrome.extension.getURL('insurer-details.html') + '?syncID=' + syncID,
     type: 'panel',
-    height: 650,
-    width: 450,
+    height: 670,
+    width: 470,
     left: left,
     top: top,
   });
@@ -89,5 +89,26 @@ const checkClientInsurances = ({ $scope }) => {
       $scope.clientsInsurances = items.clientsInsurances;
       $scope.$apply();
     }
+  });
+};
+
+// SERVICES FOR API
+
+const baseIpAddress = '13.239.1.237';
+const baseURL = 'http://' + baseIpAddress + '/';
+
+const postConnectToProvider = ({ $http, details }) => {
+  const urlChecker = baseURL + 'setup/set-credential';
+  return $http({
+    method: 'POST',
+    url: urlChecker,
+    data: JSON.stringify(details),
+  });
+};
+
+const getConnectToProvider = ({ $http, browserId }) => {
+  const urlChecker = baseURL + 'setup/get-credential';
+  return $http.get(urlChecker, {
+    params: { browserId },
   });
 };

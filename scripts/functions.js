@@ -38,11 +38,11 @@ const getRandomToken = () => {
 };
 
 const setChromeIdentity = () => {
-  const userid = getRandomToken();
-  chrome.storage.sync.get('userid', (items) => {
-    if (!items) {
-      chrome.storage.sync.set({ userid: userid }, function() {
-        console.log('Value is set to ' + userid);
+  const chromeId = getRandomToken();
+  chrome.storage.local.get('chromeId', (items) => {
+    if (!items.chromeId) {
+      chrome.storage.local.set({ chromeId: chromeId }, function() {
+        console.log('Value is set to ' + chromeId);
       });
     }
   });
