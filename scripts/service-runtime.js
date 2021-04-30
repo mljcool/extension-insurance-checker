@@ -42,6 +42,24 @@ const onLoadSyncData = ({ $scope }) => {
   });
 };
 
+const arrangedClientBenefits = (clients = [], insurers = []) => {
+  console.log(`clients`, JSON.stringify(clients));
+  console.log(`insurers`, JSON.stringify(insurers));
+  const newSet =
+    clients.map((data = {}) => {
+      data.myBenefits = insurers.map((benefit = {}) => {
+        benefit.ownCover = benefit.benefitDetails.filter(
+          (ins = {}) =>
+            parseInt(ins.familyClientID) === parseInt(data.personId),
+        );
+        return benefit;
+      });
+      data.insurersList = insurers;
+      return data;
+    }) || [];
+  return newSet;
+};
+
 const checkAdviserInforData = ({ $scope }) => {
   chrome.storage.local.get('adviserData', function(items) {
     if (!!items.adviserData) {
@@ -90,6 +108,16 @@ const checkClientInsurances = ({ $scope }) => {
       $scope.$apply();
     }
   });
+};
+
+const getClientAndBenefits = ({ $scope }) => {
+  setTimeout(() => {
+    const clients = $scope.ClientInformGet;
+    const insurers = $scope.clientsInsurances;
+    $scope.clientsAndBenefits = arrangedClientBenefits(clients, insurers);
+    $scope.$apply();
+    console.log('$scope.clientsAndBenefits', $scope.clientsAndBenefits);
+  }, 200);
 };
 
 // SERVICES FOR API

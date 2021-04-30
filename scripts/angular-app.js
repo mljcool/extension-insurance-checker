@@ -87,11 +87,11 @@ app.controller('pagerCtrl', [
       chrome.storage.local.get('chromeId', (items) => {
         if (!!items.chromeId) {
           const details = {
-            username,
-            password,
-            providerName,
-            id,
-            chromeId: items.chromeId,
+            Username: username,
+            Password: password,
+            InsurerName: providerName,
+            InsurerId: id,
+            BrowserId: items.chromeId,
           };
           postConnectToProvider({ $http, details }).then(
             (success) => {
@@ -126,7 +126,7 @@ app.controller('pagerCtrl', [
     checkAdviserInforData({ $scope });
     checkClientInforData({ $scope });
     checkClientInsurances({ $scope });
-
+    getClientAndBenefits({ $scope });
     $scope.insuranceLoginList = sampleInsuranceLis;
     $scope.listOFClientInsurances = listOFClientInsurances;
   },

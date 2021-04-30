@@ -1,4 +1,5 @@
 const baseURL = 'https://api.sit.mycrm.finance/';
+const prodURL = 'https://api.sit.mycrm.finance/';
 
 const userInfo = () => baseURL + 'GetUserInfo';
 
@@ -74,13 +75,14 @@ const mapClientsInfo = (clientList = []) => {
   const clientMapper = (data = {}) => {
     const setKeys = safeKeys(data);
     return {
-      personId: setKeys('PersonId'),
+      personId: parseInt(setKeys('PersonId')),
       lastName: setKeys('LastName'),
       fullName: setKeys('FullName'),
       firstName: setKeys('FirstName'),
       middleName: setKeys('MiddleName'),
       legalName: setKeys('LegalName'),
       preferredName: setKeys('PreferredName'),
+      isPrimary: setKeys('isPrimary'),
       gender: setKeys('Gender'),
       initialName: setInitials(setKeys('FirstName'), setKeys('LastName')),
       dateOfBirth: !setKeys('DateOfBirth')

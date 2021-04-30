@@ -105,29 +105,31 @@
       <div class="insurer-list" ng-if="!isGettingStarted">
         <div
           class="insurance__content"
-          ng-repeat="clientInsurance in listOFClientInsurances track by $index"
+          ng-repeat="clients in clientsAndBenefits track by $index"
         >
           <div class="insurance__card__info">
             <div class="insurance__card_user_section">
               <div class="insurance__card_info_holder">
                 <div class="insurance__card_details_holder">
-                  <div
-                    class="insurance__card_profile_wrapper"
-                    ng-repeat="clients in ClientInformGet"
-                  >
+                  <div class="insurance__card_profile_wrapper">
                     <div class="insurance__card_avatar_holder">
-                      <div class="insurance__card_name_prefix">
-                        {{clients.initialName}}
+                      <div class="insurance__card_names">
+                        <div class="insurance__card_name_prefix">
+                          {{clients.initialName}}
+                        </div>
+                        <span class="client_fname">
+                          {{clients.fullName}}
+                        </span>
                       </div>
-                      <span class="client_fname">
-                        {{clients.fullName}}
+                      <span class="client_is_primary" ng-if="clients.isPrimary">
+                        PRIMARY
                       </span>
                     </div>
                     <div class="insurance__card_name_details">
-                      <span>{{clients.email}}</span>
+                      <span>email: {{clients.email}}</span>
                       <div class="client_dob_gender">
-                        <span>{{clients.gender}}</span>
-                        <span>{{clients.dateOfBirth}}</span>
+                        <span>Gender: {{clients.gender}}</span>
+                        <span>DOB: {{clients.dateOfBirth}}</span>
                       </div>
                     </div>
                   </div>
@@ -137,7 +139,7 @@
             <div class="insurance_container_providers">
               <div
                 class="insurance__card_provider_info"
-                ng-repeat="insurance in clientsInsurances track by $index"
+                ng-repeat="insurance in clients.myBenefits track by $index"
               >
                 <div class="insurance__card_info_details">
                   <div class="insurance__card_logo_holder">
@@ -169,11 +171,12 @@
                     </div>
                   </div>
                 </div>
-                <div class="insurance__card_benefits_list">
-                  <span
-                    class="cover_name"
-                    ng-repeat="covers in insurance.benefitDetails"
-                  >
+                <div
+                  class="insurance__card_benefits_list"
+                  ng-repeat="covers in insurance.benefitDetails"
+                  ng-if="covers.familyClientID === clients.personId"
+                >
+                  <span class="cover_name">
                     {{covers.benefitName}} {{covers.coverAmount | currency : '$'
                     : 2}} - (
                     <span class="cover_name_client"

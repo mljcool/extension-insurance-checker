@@ -28,7 +28,7 @@ const getClientInfo = (requestURL) => {
       const url = getClientInfoURL(familyID);
       getRequest(url).done((response) => {
         if (!!response.length) {
-          const clientInfo = mapClientsInfo(response);
+          const clientInfo = mapClientsInfo(response.sort().reverse());
           setupClientInfoStorage(clientInfo);
           console.log('getClientInfoURL API', clientInfo);
         }
