@@ -20,6 +20,7 @@ app.controller('pagerCtrl', [
     $scope.isGettingStarted = false;
     $scope.hasData = true;
     $scope.insuranceList = [];
+    $scope.listOfConnectedProvider = [];
 
     $scope.gettingStarted = () => {
       $scope.isGettingStarted = !$scope.isGettingStarted;
@@ -29,9 +30,10 @@ app.controller('pagerCtrl', [
       $scope.isHideProfile = !$scope.isHideProfile;
     };
 
-    const toggleSyncing = (idx) => {
-      $scope.clientsInsurances[idx].isSync = !$scope.clientsInsurances[idx]
-        .isSync;
+    const toggleSyncing = (index, parentIdx) => {
+      console.log(`indexes`, $scope.clientsAndBenefits[parentIdx].myBenefits);
+      $scope.clientsAndBenefits[parentIdx].myBenefits[index].isSync = !$scope
+        .clientsAndBenefits[parentIdx].myBenefits[index].isSync;
     };
     /* 
 
@@ -44,18 +46,29 @@ app.controller('pagerCtrl', [
     https://insurance-checker/syncID=123456
   */
 
-    const whenSuccessCompare = ({ insurance }, parentIdx) => {
+    const whenSuccessCompare = ({ insurance }, index, parentIdx) => {
       setTimeout(() => {
-        toggleSyncing(parentIdx);
+        toggleSyncing(index, parentIdx);
         $scope.$apply();
         viewComaparisonWindow({ insurance });
       }, 2000);
     };
 
-    $scope.openComparison = ({ insurance, clients }, parentIdx) => {
-      console.log(insurance);
-      console.log(clients);
-      toggleSyncing(parentIdx);
+    $scope.openComparison = ({ insurance, clients }, index, parentIdx) => {
+      console.log(index);
+      console.log(parentIdx);
+      toggleSyncing(index, parentIdx);
+
+      if (!$scope.listOfConnectedProvider.length) {
+        setTimeout(() => {
+          toggleSyncing(index, parentIdx);
+          $scope.clientsAndBenefits[parentIdx].myBenefits[
+            index
+          ].isConnected = true;
+          $scope.$apply();
+        }, 1000);
+        return;
+      }
 
       chrome.storage.local.get('chromeId', (items) => {
         if (!!items.chromeId) {
@@ -73,7 +86,7 @@ app.controller('pagerCtrl', [
           getCompareToProvider({ $http, queries }).then(
             (data) => {
               console.log('SUCCESS', data);
-              whenSuccessCompare({}, parentIdx);
+              whenSuccessCompare({}, index, parentIdx);
             },
             (error) => {
               console.log('ERROR', error);
@@ -142,8 +155,12 @@ app.controller('pagerCtrl', [
       if (!!items.chromeId) {
         const browserId = items.chromeId;
         getConnectToProvider({ $http, browserId }).then(
-          (data) => {
+          ({ data, status }) => {
             console.log('SUCCESS', data);
+            if (!!data.length && status === 200) {
+              $scope.listOfConnectedProvider = data;
+              $scope.$apply();
+            }
           },
           (error) => {
             console.log('ERROR', error);

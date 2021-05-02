@@ -145,6 +145,25 @@
                 class="insurance__card_provider_info"
                 ng-repeat="insurance in clients.myBenefits track by $index"
               >
+                <div
+                  class="insurance_error_message"
+                  ng-if="insurance.isConnected"
+                >
+                  <img
+                    src="./assets/exclamation-mark.svg"
+                    class="insurer_error_logo"
+                    width="20px"
+                    height="20px"
+                  />
+                  <p>
+                    Seems your
+                    <span class="insurer_info_name"
+                      >{{insurance.providerName}}</span
+                    >
+                    account is not connected.
+                  </p>
+                </div>
+
                 <div class="insurance__card_info_details">
                   <div class="insurance__card_logo_holder">
                     <img
@@ -165,7 +184,7 @@
                     <button
                       class="btn-view"
                       ng-if="!insurance.isSync"
-                      ng-click="openComparison({insurance, clients}, $index)"
+                      ng-click="openComparison({insurance, clients}, $index, $parent.$index)"
                     >
                       compare
                     </button>

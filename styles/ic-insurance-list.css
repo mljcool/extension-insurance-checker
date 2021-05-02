@@ -252,3 +252,25 @@
   font-size: 15px;
   color: #6d6b6f;
 }
+.insurer_error_logo {
+  margin-left: 3px;
+}
+.insurance_error_message {
+  display: flex;
+  text-transform: uppercase;
+  padding: 2px;
+  align-items: center;
+  background: white;
+  border-top-right-radius: 9px;
+  border-bottom-right-radius: 9px;
+  border-left: 4px solid #9a86a8;
+  box-shadow: -3px 3px 3px rgb(255 246 246 / 16%), 3px 1px 4px rgb(228 225 230);
+  margin-bottom: 5px;
+}
+.insurance_error_message p {
+  margin-left: 4px;
+}
+.insurer_info_name {
+  font-style: italic;
+  font-weight: 800;
+}
