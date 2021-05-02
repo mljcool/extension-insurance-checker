@@ -156,11 +156,7 @@
                     height="20px"
                   />
                   <p>
-                    Seems your
-                    <span class="insurer_info_name"
-                      >{{insurance.providerName}}</span
-                    >
-                    account is not connected.
+                    {{insurance.message}}
                   </p>
                 </div>
 
@@ -184,7 +180,7 @@
                     <button
                       class="btn-view"
                       ng-if="!insurance.isSync"
-                      ng-click="openComparison({insurance, clients}, $index, $parent.$index)"
+                      ng-click="openComparison({insurance, clients}, $index, $parent.$parent.$index)"
                     >
                       compare
                     </button>

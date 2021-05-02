@@ -2,6 +2,7 @@ const sampleInsuranceLis = [
   {
     id: 1,
     providerName: 'AIA',
+    providerNameLowerCases: 'aia',
     username: '',
     password: '',
     isConnected: false,
@@ -11,15 +12,17 @@ const sampleInsuranceLis = [
   {
     id: 3,
     providerName: 'Fidelity',
+    providerNameLowerCases: 'fidelity',
     username: '',
     password: '',
-    isConnected: true,
+    isConnected: false,
     isSyncing: false,
     message: '',
   },
   {
     id: 4,
     providerName: 'Asteron Life',
+    providerNameLowerCases: 'asteron_life',
     username: '',
     password: '',
     isConnected: false,
@@ -29,6 +32,7 @@ const sampleInsuranceLis = [
   {
     id: 5,
     providerName: 'NIB',
+    providerNameLowerCases: 'nib',
     username: '',
     password: '',
     isConnected: false,
@@ -38,6 +42,7 @@ const sampleInsuranceLis = [
   {
     id: 6,
     providerName: 'Partners Life',
+    providerNameLowerCases: 'partners_life',
     username: '',
     password: '',
     isConnected: false,
@@ -47,6 +52,7 @@ const sampleInsuranceLis = [
   {
     id: 8,
     providerName: 'AMP',
+    providerNameLowerCases: 'amp',
     username: '',
     password: '',
     isConnected: false,
@@ -56,6 +62,7 @@ const sampleInsuranceLis = [
   {
     id: 9,
     providerName: 'Cigna',
+    providerNameLowerCases: 'cigna',
     username: '',
     password: '',
     isConnected: false,
@@ -65,6 +72,7 @@ const sampleInsuranceLis = [
   {
     id: 10,
     providerName: 'Southern Cross',
+    providerNameLowerCases: 'southern_cross',
     username: '',
     password: '',
     isConnected: false,
@@ -74,6 +82,7 @@ const sampleInsuranceLis = [
   {
     id: 11,
     providerName: 'Accuro',
+    providerNameLowerCases: 'accuro',
     username: '',
     password: '',
     isConnected: false,

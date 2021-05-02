@@ -30,10 +30,20 @@ app.controller('pagerCtrl', [
       $scope.isHideProfile = !$scope.isHideProfile;
     };
 
+    const apply = () => {
+      setTimeout(() => {
+        $scope.$apply();
+      });
+    };
+
     const toggleSyncing = (index, parentIdx) => {
-      console.log(`indexes`, $scope.clientsAndBenefits[parentIdx].myBenefits);
+      console.log(
+        'openComparison_insurance',
+        $scope.clientsAndBenefits[parentIdx],
+      );
       $scope.clientsAndBenefits[parentIdx].myBenefits[index].isSync = !$scope
         .clientsAndBenefits[parentIdx].myBenefits[index].isSync;
+      apply();
     };
     /* 
 
@@ -49,32 +59,35 @@ app.controller('pagerCtrl', [
     const whenSuccessCompare = ({ insurance }, index, parentIdx) => {
       setTimeout(() => {
         toggleSyncing(index, parentIdx);
-        $scope.$apply();
         viewComaparisonWindow({ insurance });
       }, 2000);
     };
 
     $scope.openComparison = ({ insurance, clients }, index, parentIdx) => {
-      console.log(index);
-      console.log(parentIdx);
+      const { firstName, dateOfBirth, lastName } = clients;
+      const { providerName } = insurance;
+      const providerNameLowerCase = (providerName || '').toLowerCase();
+
+      // console.log('openComparison_insurance', insurance);
+      console.log('openComparison_clients', clients);
       toggleSyncing(index, parentIdx);
 
-      if (!$scope.listOfConnectedProvider.length) {
+      if (
+        !$scope.listOfConnectedProvider.length ||
+        !checkIsConnected({ $scope }, providerNameLowerCase)
+      ) {
         setTimeout(() => {
           toggleSyncing(index, parentIdx);
           $scope.clientsAndBenefits[parentIdx].myBenefits[
             index
           ].isConnected = true;
-          $scope.$apply();
-        }, 1000);
+          apply();
+        }, 900);
         return;
       }
 
       chrome.storage.local.get('chromeId', (items) => {
         if (!!items.chromeId) {
-          const { firstName, dateOfBirth, lastName } = clients;
-          const { providerName } = insurance;
-          const providerNameLowerCase = (providerName || '').toLowerCase();
           const queries = {
             birthday: dateOfBirth,
             lastName,
@@ -90,6 +103,13 @@ app.controller('pagerCtrl', [
             },
             (error) => {
               console.log('ERROR', error);
+              $scope.clientsAndBenefits[parentIdx].myBenefits[
+                index
+              ].isConnected = true;
+
+              $scope.clientsAndBenefits[parentIdx].myBenefits[index].message =
+                `Oops! something went wrong ` + error.statusText;
+              apply();
             },
           );
         }
@@ -123,7 +143,7 @@ app.controller('pagerCtrl', [
         $scope.insuranceLoginList[idx].isConnected = true;
         $scope.insuranceLoginList[idx].username = '';
         $scope.insuranceLoginList[idx].password = '';
-        $scope.$apply();
+        apply();
       };
 
       chrome.storage.local.get('chromeId', (items) => {
@@ -158,8 +178,7 @@ app.controller('pagerCtrl', [
           ({ data, status }) => {
             console.log('SUCCESS', data);
             if (!!data.length && status === 200) {
-              $scope.listOfConnectedProvider = data;
-              $scope.$apply();
+              setAllConnectedInsurers({ $scope, data });
             }
           },
           (error) => {

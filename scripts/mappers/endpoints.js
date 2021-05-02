@@ -111,7 +111,6 @@ const mapClientsInsurance = (insuranceList = []) => {
       lastName: setKeys('LastName'),
       benefitTotalPremium: setKeys('BenefitTotalPremium'),
       isSync: false,
-      isConnected: false,
       initialName: setInitials(setKeys('FirstName'), setKeys('LastName')),
     };
   };
@@ -122,12 +121,15 @@ const mapClientsInsurance = (insuranceList = []) => {
       providerID: setKeys('ProviderID'),
       policyNumber: setKeys('PolicyNumber'),
       policyNumberLimited:
-        (setKeys('PolicyNumber') || '').substr(0, 15) + '...',
+        (setKeys('PolicyNumber') || '').substr(0, 30) + '...',
       providerName: setKeys('ProviderName'),
       statusName: setKeys('StatusName'),
       isApplication: setKeys('IsApplication'),
       benefitDetails: setKeys('BenefitDetails').map(benefitsMapper),
       isSync: false,
+      isConnected: false,
+      message:
+        'Seems your ' + setKeys('ProviderName') + ' account is not connected.',
       syncID: setSyncID(),
     };
   };

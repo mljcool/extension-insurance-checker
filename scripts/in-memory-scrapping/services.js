@@ -22,7 +22,7 @@ const getConnectToProvider = ({ $http, browserId }) => {
 
 const getCompareToProvider = ({ $http, queries }) => {
   const { firstName, lastName, birthday, browserId, insurerName } = queries;
-  const urlChecker = baseURL + 'setup/get-credential';
+  const urlChecker = baseURL + 'insurer/search-client';
   return $http.get(urlChecker, {
     params: { firstName, lastName, birthday, browserId, insurerName },
   });

@@ -42,22 +42,6 @@ const onLoadSyncData = ({ $scope }) => {
   });
 };
 
-const arrangedClientBenefits = (clients = [], insurers = []) => {
-  const newSet =
-    clients.map((data = {}) => {
-      data.myBenefits = insurers.map((benefit = {}) => {
-        benefit.ownCover = benefit.benefitDetails.filter(
-          (ins = {}) =>
-            parseInt(ins.familyClientID) === parseInt(data.personId),
-        );
-        return benefit;
-      });
-      data.insurersList = insurers;
-      return data;
-    }) || [];
-  return newSet;
-};
-
 const checkAdviserInforData = ({ $scope }) => {
   chrome.storage.local.get('adviserData', function(items) {
     if (!!items.adviserData) {
@@ -108,6 +92,31 @@ const checkClientInsurances = ({ $scope }) => {
   });
 };
 
+const setSyncID = () => {
+  return (
+    '_' +
+    Math.random()
+      .toString(36)
+      .substr(2, 9)
+  );
+};
+
+const arrangedClientBenefits = (clients = [], insurers = []) => {
+  const newSet =
+    clients.map((data = {}, index) => {
+      data.myBenefits = insurers.map((benefit = {}) => {
+        benefit.ownCover = benefit.benefitDetails.filter(
+          (ins = {}) =>
+            parseInt(ins.familyClientID) === parseInt(data.personId),
+        );
+        return benefit;
+      });
+      data.insurersList = insurers;
+      return data;
+    }) || [];
+  return newSet;
+};
+
 const getClientAndBenefits = ({ $scope }) => {
   setTimeout(() => {
     const clients = $scope.ClientInformGet;
@@ -118,4 +127,26 @@ const getClientAndBenefits = ({ $scope }) => {
     $scope.$apply();
     console.log('$scope.clientsAndBenefits', $scope.clientsAndBenefits);
   }, 200);
+};
+
+const checkIsConnected = ({ $scope }, providerName = '') => {
+  const checkStatus = $scope.insuranceLoginList.some(
+    (provider) =>
+      provider.providerNameLowerCases === providerName && provider.isConnected,
+  );
+  return checkStatus;
+};
+
+const setAllConnectedInsurers = ({ $scope, data = [] }) => {
+  $scope.listOfConnectedProvider = data;
+  data.forEach((statuses) => {
+    const foundIndex = $scope.insuranceLoginList.findIndex(
+      (x) => x.providerName == statuses.insurerName,
+    );
+    $scope.insuranceLoginList[foundIndex].isConnected = true;
+  });
+  setTimeout(() => {
+    console.log('$scope.insuranceLoginList', $scope.insuranceLoginList);
+    $scope.$apply();
+  });
 };
