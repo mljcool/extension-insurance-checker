@@ -44,14 +44,43 @@ app.controller('pagerCtrl', [
     https://insurance-checker/syncID=123456
   */
 
-    $scope.openComparison = ({ insurance }, parentIdx) => {
-      console.log(insurance);
-      toggleSyncing(parentIdx);
+    const whenSuccessCompare = ({ insurance }, parentIdx) => {
       setTimeout(() => {
         toggleSyncing(parentIdx);
         $scope.$apply();
         viewComaparisonWindow({ insurance });
       }, 2000);
+    };
+
+    $scope.openComparison = ({ insurance, clients }, parentIdx) => {
+      console.log(insurance);
+      console.log(clients);
+      toggleSyncing(parentIdx);
+
+      chrome.storage.local.get('chromeId', (items) => {
+        if (!!items.chromeId) {
+          const { firstName, dateOfBirth, lastName } = clients;
+          const { providerName } = insurance;
+          const providerNameLowerCase = (providerName || '').toLowerCase();
+          const queries = {
+            birthday: dateOfBirth,
+            lastName,
+            firstName,
+            insurerName: providerNameLowerCase,
+            browserId: items.chromeId,
+          };
+
+          getCompareToProvider({ $http, queries }).then(
+            (data) => {
+              console.log('SUCCESS', data);
+              whenSuccessCompare({}, parentIdx);
+            },
+            (error) => {
+              console.log('ERROR', error);
+            },
+          );
+        }
+      });
     };
 
     $scope.isResync = false;

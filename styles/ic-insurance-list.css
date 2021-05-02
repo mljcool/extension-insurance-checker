@@ -4,7 +4,7 @@
   height: 100%;
 }
 .insurance__content {
-  padding: 10px 9px;
+  padding: 2px 9px;
   margin-top: 1em;
 }
 .insurance__card_info_holder {
@@ -236,4 +236,19 @@
 
 .btn-view img {
   filter: brightness(0) invert(1);
+}
+
+.existing_label {
+  display: block;
+  text-align: center;
+  margin-top: 1rem;
+  background: white;
+  border-radius: 9px;
+  box-shadow: 0px 3px 6px rgb(0 0 0 / 16%), 0px 3px 6px rgb(0 0 0 / 23%);
+  padding: 10px 9px;
+  margin: 19px 9px;
+}
+.existing_label h2 {
+  font-size: 15px;
+  color: #6d6b6f;
 }

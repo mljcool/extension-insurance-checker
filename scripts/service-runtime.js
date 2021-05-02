@@ -43,8 +43,6 @@ const onLoadSyncData = ({ $scope }) => {
 };
 
 const arrangedClientBenefits = (clients = [], insurers = []) => {
-  console.log(`clients`, JSON.stringify(clients));
-  console.log(`insurers`, JSON.stringify(insurers));
   const newSet =
     clients.map((data = {}) => {
       data.myBenefits = insurers.map((benefit = {}) => {
@@ -114,29 +112,10 @@ const getClientAndBenefits = ({ $scope }) => {
   setTimeout(() => {
     const clients = $scope.ClientInformGet;
     const insurers = $scope.clientsInsurances;
-    $scope.clientsAndBenefits = arrangedClientBenefits(clients, insurers);
+    $scope.clientsAndBenefits = arrangedClientBenefits(clients, insurers)
+      .sort()
+      .reverse();
     $scope.$apply();
     console.log('$scope.clientsAndBenefits', $scope.clientsAndBenefits);
   }, 200);
-};
-
-// SERVICES FOR API
-
-const baseIpAddress = '13.239.1.237';
-const baseURL = 'http://' + baseIpAddress + '/';
-
-const postConnectToProvider = ({ $http, details }) => {
-  const urlChecker = baseURL + 'setup/set-credential';
-  return $http({
-    method: 'POST',
-    url: urlChecker,
-    data: JSON.stringify(details),
-  });
-};
-
-const getConnectToProvider = ({ $http, browserId }) => {
-  const urlChecker = baseURL + 'setup/get-credential';
-  return $http.get(urlChecker, {
-    params: { browserId },
-  });
 };

@@ -53,7 +53,7 @@ const getFormattedDate = (date) => {
   var day = date.getDate().toString();
   day = day.length > 1 ? day : '0' + day;
 
-  return month + '/' + day + '/' + year;
+  return day + '/' + month + '/' + year;
 };
 
 const setSyncID = () => {
@@ -65,8 +65,8 @@ const setSyncID = () => {
   );
 };
 
-const setInitials = (fname, lname) => {
-  const strsFormat = (str) => str.charAt(0).toUpperCase();
+const setInitials = (fname = '', lname = '') => {
+  const strsFormat = (str) => (str || '').charAt(0).toUpperCase();
   const setNames = strsFormat(fname) + '' + strsFormat(lname);
   return setNames;
 };
@@ -119,7 +119,9 @@ const mapClientsInsurance = (insuranceList = []) => {
     const setKeys = safeKeys(data);
     return {
       providerID: setKeys('ProviderID'),
-      providerID: setKeys('ProviderID'),
+      policyNumber: setKeys('PolicyNumber'),
+      policyNumberLimited:
+        (setKeys('PolicyNumber') || '').substr(0, 15) + '...',
       providerName: setKeys('ProviderName'),
       statusName: setKeys('StatusName'),
       isApplication: setKeys('IsApplication'),
