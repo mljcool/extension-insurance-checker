@@ -1,5 +1,5 @@
-const baseURL = 'https://api.sit.mycrm.finance/';
-const prodURL = 'https://api.sit.mycrm.finance/';
+// const baseURL = 'https://api.sit.mycrm.finance/';
+const baseURL = 'https://api.loanmarket.com.au/';
 
 const userInfo = () => baseURL + 'GetUserInfo';
 
